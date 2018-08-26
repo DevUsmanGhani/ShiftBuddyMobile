@@ -1,38 +1,26 @@
 import React from 'react';
-import { View, Text, Button } from 'react-native';
-import { createStackNavigator } from 'react-navigation';
-import HomeScreen from './components/HomeScreen';
-import EmployeeLogin from './components/employee/EmployeeLogin';
-import ManagerLogin from './components/manager/ManagerLogin';
-import EmployeeDashboard from './components/employee/EmployeeDashboard';
-import EmployeeShift from './components/employee/EmployeeShift';
+import RootStack from './app/routes';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider, connect } from 'react-redux';
+import thunk from 'redux-thunk'
+import axios from 'axios';
+import axiosMiddleware from 'redux-axios-middleware';
+import rootReducer from './modules';
 
+const client = axios.create({
+  baseURL: '104.181.173.219:5000',
+});
 
-const RootStack = createStackNavigator(
-  {
-    Home: {
-      screen: HomeScreen,
-    },
-    ManagerLogin: {
-      screen: ManagerLogin,
-    },
-    EmployeeLogin: {
-      screen: EmployeeLogin,
-    },
-    EmployeeDashboard: {
-      screen: EmployeeDashboard,
-    },
-    EmployeeShift: {
-      screen: EmployeeShift,
-    }
-  },
-  {
-    initialRouteName: 'Home',
-  }
-);
+const middlewares = [axiosMiddleware(client), thunk];
+
+const store = createStore(rootReducer, applyMiddleware(...middlewares));
 
 export default class App extends React.Component {
   render() {
-    return <RootStack />;
+    return (
+    <Provider store={store}>
+      <RootStack />
+    </Provider>
+    )
   }
 }
