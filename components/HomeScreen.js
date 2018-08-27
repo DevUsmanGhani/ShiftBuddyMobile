@@ -1,24 +1,35 @@
-import React from 'react';
-import { View, Text, Button } from 'react-native';
+import React, { Component } from 'react';
+import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text } from 'native-base';
 
-export default class HomeScreen extends React.Component {
+export default class HomeScreen extends Component {
   render() {
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Are you a Manager or an Employee?</Text>
-        <View>
-          <Button
-            title="Manager Login"
-            color="#841584"
-            onPress={() => this.props.navigation.navigate("ManagerLogin")}
-          />
-          <Button
-            title="Employee Login"
-            color="#841584"
-            onPress={() => this.props.navigation.navigate("EmployeeLogin")}
-          />
-          </View>
-      </View>
+      <Container>
+        <Header>
+          <Body>
+            <Title style={{color: 'orange'}}>Shift Buddy Pro</Title>
+          </Body>
+        </Header>
+        <Content contentContainerStyle={{ justifyContent: 'center', flex: 1, backgroundColor: '#F0EBD8' }}>
+          <Button full large bordered warning style={{backgroundColor: "#FFF", height: 100}} onPress={() => this.props.navigation.navigate("ManagerLogin")}>
+            <Text>
+              Manager Login
+            </Text>
+          </Button>
+          <Button full large warning style={{height: 100}} onPress={() => this.props.navigation.navigate("EmployeeLogin")}>
+            <Text>
+              Employee Login
+            </Text>
+          </Button>
+        </Content>
+        <Footer>
+          <FooterTab>
+            <Button full >
+              <Text>Copyright {(new Date()).getFullYear()} &copy; ShiftBuddyPro</Text>
+            </Button>
+          </FooterTab>
+        </Footer>
+      </Container>
     );
   }
 }

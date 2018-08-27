@@ -1,12 +1,23 @@
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text } from 'native-base';
 
 export default class EmployeeShift extends Component {
   render() {
     return (
-      <View>
-        <Text> Shift Report 8/24/ </Text>
-      </View>
+      <Container>
+        <Header>
+          <Body>
+            <Title>
+              Shift
+            </Title>
+          </Body>
+        </Header>
+        <Content>
+          <Text>
+            Shift
+          </Text>
+        </Content>
+      </Container>
     )
   }
 }

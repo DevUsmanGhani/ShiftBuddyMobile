@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, Button } from 'react-native';
 import { connect } from 'react-redux';
 import { loginManager } from '../../modules/manager';
-
+import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, Form, Item, Input } from 'native-base';
+import BackButton from '../common/BackButton';
 
 export class ManagerLogin extends Component {
   constructor(props) {
@@ -27,27 +27,42 @@ export class ManagerLogin extends Component {
 
   render() {
     return (
-      <View>
-        <Text> Manager Login  </Text>
-        <TextInput
-          placeholder={'Enter Email'}
-          autoFocus
-          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-          onChangeText={(email) => this.setState({email})}
-          value={this.state.email}
-        />
-        <TextInput
-          placeholder={'Enter Password'}
-          secureTextEntry
-          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-          onChangeText={(password) => this.setState({password})}
-          value={this.state.password}
-        />
-        <Button 
-          onPress={() => this.handlePress()}
-          title="Log in"
-        />
-      </View>
+      <Container>
+        <Header>
+          <BackButton />
+          <Body>
+            <Title>
+              Login
+            </Title>
+          </Body>
+          <Right />>
+        </Header>
+        <Content contentContainerStyle={{ flex: 1, backgroundColor: '#F0EBD8' }}>
+          <Form style={{backgroundColor: 'white'}}>
+            <Item>
+              <Input 
+                autofocus 
+                placeholder='Enter Email' 
+                onChangeText={(email) => this.setState({email})} 
+                value={this.state.email} 
+              />
+            </Item>
+            <Item>
+              <Input 
+                placeholder='Enter Password'
+                secureTextEntry
+                onChangeText={(password) => this.setState({password})}
+                value={this.state.password}
+              />
+            </Item>
+            <Button full large warning onPress={() => this.handlePress()}>
+              <Text>
+                Log in
+              </Text>
+            </Button>
+          </Form>
+        </Content>
+      </Container>      
     )
   }
 }

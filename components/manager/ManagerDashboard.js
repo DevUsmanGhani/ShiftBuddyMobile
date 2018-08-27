@@ -1,16 +1,27 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text } from 'native-base';
 import { connect } from 'react-redux';
+import BackButton from '../common/BackButton'
 
-export class ManagerLogin extends Component {
-
+export class ManagerDashboard extends Component {
 
   render() {
     const { managerData } = this.props.manager;
     return (
-      <View>
-        <Text> Hello {managerData.name} </Text>
-      </View>
+      <Container>
+        <Header>
+          <BackButton />
+          <Body>
+            <Title>Dashboard</Title>
+          </Body>
+          <Right/>>
+        </Header>
+        <Content contentContainerStyle={{ flex: 1, backgroundColor: '#F0EBD8' }}>
+          <Text>
+            Hello {managerData.name}
+          </Text>
+        </Content>
+      </Container>
     )
   }
 }
@@ -23,4 +34,4 @@ const mapDispatchToProps = {
   
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ManagerLogin)
+export default connect(mapStateToProps, mapDispatchToProps)(ManagerDashboard)

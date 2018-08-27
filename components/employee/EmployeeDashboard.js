@@ -1,25 +1,55 @@
 import React, { Component } from 'react'
-import { Text, View, Button } from 'react-native'
+import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text } from 'native-base';
+import BackButton from '../common/BackButton';
 
 export default class EmployeeDashboard extends Component {
   constructor(props) {
     super(props);
-    this.handlePress = this.handlePress.bind(this);
+    this.state = {date: new Date()};
   }
 
-  handlePress(){
-    this.props.navigation.navigate("EmployeeShift");
+  componentDidMount() {
+    this.timerID = setInterval(
+      () => this.tick(),
+      1000
+    );
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+
+  tick() {
+    this.setState({
+      date: new Date()
+    });
   }
 
   render() {
     return (
-      <View>
-        <Text> EmployeeDashboard </Text>
-        <Button
-          title="Start Shift"
-          onPress={() => this.handlePress()}
-        />
-      </View>
+      <Container>
+        <Header>
+          <BackButton />
+          <Body>
+            <Title>
+              Dashboard
+            </Title>
+          </Body>
+          <Right /> 
+        </Header>
+        <Content contentContainerStyle={{ justifyContent: 'center', alignItems: 'center', flex: 1, backgroundColor: '#F0EBD8' }}>
+          <Button danger full large style={{height: 300}} onPress={() => this.props.navigation.navigate("EmployeeShift")}>
+            <Text>
+              Start Shift
+            </Text>
+          </Button>
+          <Button primary full disabled large>
+            <Text>
+              {this.state.date.toLocaleString()}
+            </Text>
+          </Button>
+        </Content>  
+      </Container>
     )
   }
 }

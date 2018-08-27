@@ -16,6 +16,7 @@ export default createStackNavigator(
     EmployeeShift: { screen: EmployeeShift }
   },
   {
-  initialRouteName: 'Home'
+  initialRouteName: 'Home',
+  headerMode: 'none',
   }
 );
