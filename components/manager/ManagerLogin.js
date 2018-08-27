@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loginManager } from '../../modules/manager';
 import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, Form, Item, Input } from 'native-base';
-
-
+import BackButton from '../common/BackButton';
 
 export class ManagerLogin extends Component {
   constructor(props) {
@@ -30,14 +29,16 @@ export class ManagerLogin extends Component {
     return (
       <Container>
         <Header>
+          <BackButton />
           <Body>
             <Title>
-             Manager Login
-          </Title>
+              Login
+            </Title>
           </Body>
+          <Right />>
         </Header>
-        <Content>
-          <Form>
+        <Content contentContainerStyle={{ flex: 1, backgroundColor: '#F0EBD8' }}>
+          <Form style={{backgroundColor: 'white'}}>
             <Item>
               <Input 
                 autofocus 

@@ -7,16 +7,16 @@ export default class HomeScreen extends Component {
       <Container>
         <Header>
           <Body>
-            <Title>Shift Buddy Pro</Title>
+            <Title style={{color: 'orange'}}>Shift Buddy Pro</Title>
           </Body>
         </Header>
-        <Content contentContainerStyle={{ justifyContent: 'center', flex: 1 }}>
-          <Button full large bordered warning onPress={() => this.props.navigation.navigate("ManagerLogin")}>
+        <Content contentContainerStyle={{ justifyContent: 'center', flex: 1, backgroundColor: '#F0EBD8' }}>
+          <Button full large bordered warning style={{backgroundColor: "#FFF", height: 100}} onPress={() => this.props.navigation.navigate("ManagerLogin")}>
             <Text>
               Manager Login
             </Text>
           </Button>
-          <Button full large warning onPress={() => this.props.navigation.navigate("EmployeeLogin")}>
+          <Button full large warning style={{height: 100}} onPress={() => this.props.navigation.navigate("EmployeeLogin")}>
             <Text>
               Employee Login
             </Text>

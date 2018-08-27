@@ -17,6 +17,6 @@ export default createStackNavigator(
   },
   {
   initialRouteName: 'Home',
-  headerMode: 'none'
+  headerMode: 'none',
   }
 );
