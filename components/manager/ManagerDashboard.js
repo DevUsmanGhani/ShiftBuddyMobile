@@ -9,13 +9,6 @@ export class ManagerDashboard extends Component {
     const { managerData } = this.props.manager;
     return (
       <Container>
-        <Header>
-          <BackButton />
-          <Body>
-            <Title>Dashboard</Title>
-          </Body>
-          <Right/>>
-        </Header>
         <Content contentContainerStyle={{ flex: 1, backgroundColor: '#F0EBD8' }}>
           <Text>
             Hello {managerData.name}
