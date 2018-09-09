@@ -17,15 +17,6 @@ export default class EmployeeLogin extends Component {
   render() {
     return (
       <Container>
-        <Header>
-        <BackButton />
-          <Body>
-            <Title>
-             Login
-            </Title>
-          </Body>
-          <Right />
-        </Header>
         <Content  contentContainerStyle={{ flex: 1, backgroundColor: '#F0EBD8' }}>
         <Form style={{backgroundColor: 'white'}}>
             <Item>
