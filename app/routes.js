@@ -28,17 +28,17 @@ const RouterComponent = () => (
           title="Manager Login"
         />
       </Scene>
-      <Scene key="employee">
+      <Scene key="employee" panHandlers={null}>
         <Scene
           key="employeeDashboard"
           component={EmployeeDashboard}
-          title="Dashboard"
+          title="Start Shift"
           rightTitle="Logout"
           onRight={()=>Actions.homeScreen()}
           initial
         />
       </Scene>
-      <Scene key="startShift">
+      <Scene key="currentShift" panHandlers={null}>
         <Scene
           key="employeeShift"
           component={EmployeeShift}
@@ -48,7 +48,7 @@ const RouterComponent = () => (
           initial
         />
       </Scene>
-      <Scene key="manager">
+      <Scene key="manager" panHandlers={null}>
         <Scene
           key="managerDashboard"
           component={ManagerDashboard}
