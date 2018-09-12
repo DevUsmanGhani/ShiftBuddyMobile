@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loginManager } from '../../modules/manager';
-import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, Form, Item, Input } from 'native-base';
+import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, Form, Item, Input, Spinner } from 'native-base';
 import BackButton from '../common/BackButton';
 
 export class ManagerLogin extends Component {
@@ -9,7 +9,8 @@ export class ManagerLogin extends Component {
     super(props);
     this.state = {
       email: 'taimur018@gmail.com',
-      password: 'admin2'
+      password: 'admin2',
+      beginLoading: false,
     }
     this.handlePress = this.handlePress.bind(this);
   }
@@ -19,10 +20,25 @@ export class ManagerLogin extends Component {
       this.props.navigation.navigate('ManagerDashboard');
     }
   }
-  
+
+  componentWillMount() {
+    this.setState({
+      beginLoading: false
+    })
+  }
+
+  componentWillUnmount() {
+    this.setState({
+      beginLoading: false
+    })
+  }
+
 
   handlePress() {
     this.props.loginManager(this.state, () => this.props.navigation.navigate('ManagerDashboard'));
+    this.setState({
+      beginLoading: true
+    })
   }
 
   render() {
@@ -40,15 +56,15 @@ export class ManagerLogin extends Component {
         <Content contentContainerStyle={{ flex: 1, backgroundColor: '#F0EBD8' }}>
           <Form style={{backgroundColor: 'white'}}>
             <Item>
-              <Input 
-                autofocus 
-                placeholder='Enter Email' 
-                onChangeText={(email) => this.setState({email})} 
-                value={this.state.email} 
+              <Input
+                autofocus
+                placeholder='Enter Email'
+                onChangeText={(email) => this.setState({email})}
+                value={this.state.email}
               />
             </Item>
             <Item>
-              <Input 
+              <Input
                 placeholder='Enter Password'
                 secureTextEntry
                 onChangeText={(password) => this.setState({password})}
@@ -61,8 +77,9 @@ export class ManagerLogin extends Component {
               </Text>
             </Button>
           </Form>
+          {this.state.beginLoading ? <Spinner color="orange" /> : null}
         </Content>
-      </Container>      
+      </Container>
     )
   }
 }
