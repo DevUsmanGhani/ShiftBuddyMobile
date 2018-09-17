@@ -6,6 +6,7 @@ import thunk from 'redux-thunk'
 import axios from 'axios';
 import axiosMiddleware from 'redux-axios-middleware';
 import rootReducer from './modules';
+import Router from './app/routes';
 
 const client = axios.create({
   baseURL: '104.181.173.219:5000',
@@ -19,7 +20,7 @@ export default class App extends React.Component {
   render() {
     return (
     <Provider store={store}>
-      <RootStack />
+      <Router />
     </Provider>
     )
   }

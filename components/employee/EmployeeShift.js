@@ -5,13 +5,6 @@ export default class EmployeeShift extends Component {
   render() {
     return (
       <Container>
-        <Header>
-          <Body>
-            <Title>
-              Shift
-            </Title>
-          </Body>
-        </Header>
         <Content>
           <Text>
             Shift

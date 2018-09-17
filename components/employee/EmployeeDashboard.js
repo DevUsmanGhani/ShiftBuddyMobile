@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text } from 'native-base';
 import BackButton from '../common/BackButton';
+import { Actions } from 'react-native-router-flux';
 
 export default class EmployeeDashboard extends Component {
   constructor(props) {
@@ -28,17 +29,8 @@ export default class EmployeeDashboard extends Component {
   render() {
     return (
       <Container>
-        <Header>
-          <BackButton />
-          <Body>
-            <Title>
-              Dashboard
-            </Title>
-          </Body>
-          <Right /> 
-        </Header>
         <Content contentContainerStyle={{ justifyContent: 'center', alignItems: 'center', flex: 1, backgroundColor: '#F0EBD8' }}>
-          <Button danger full large style={{height: 300}} onPress={() => this.props.navigation.navigate("EmployeeShift")}>
+          <Button danger full large style={{height: 300}} onPress={() => Actions.employeeShift()}>
             <Text>
               Start Shift
             </Text>

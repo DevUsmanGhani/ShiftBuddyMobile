@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, Form, Item, Input } from 'native-base';
 import BackButton from '../common/BackButton';
+import { Actions } from 'react-native-router-flux';
 
 export default class EmployeeLogin extends Component {
   constructor(props) {
@@ -12,20 +13,11 @@ export default class EmployeeLogin extends Component {
     this.handlePress = this.handlePress.bind(this);
   }
   handlePress() {
-    this.props.navigation.navigate('EmployeeDashboard');
+    Actions.employeeDashboard();
   }
   render() {
     return (
       <Container>
-        <Header>
-        <BackButton />
-          <Body>
-            <Title>
-             Login
-            </Title>
-          </Body>
-          <Right />
-        </Header>
         <Content  contentContainerStyle={{ flex: 1, backgroundColor: '#F0EBD8' }}>
         <Form style={{backgroundColor: 'white'}}>
             <Item>

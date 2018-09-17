@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { loginManager } from '../../modules/manager';
 import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, Form, Item, Input, Spinner } from 'native-base';
 import BackButton from '../common/BackButton';
+import { Actions } from 'react-native-router-flux';
 
 export class ManagerLogin extends Component {
   constructor(props) {
@@ -17,7 +18,7 @@ export class ManagerLogin extends Component {
 
   componentWillReceiveProps(nextProps) {
     if(nextProps.managerAuth.isAuthenticated) {
-      this.props.navigation.navigate('ManagerDashboard');
+      Actions.managerDashboard();
     }
   }
 
@@ -35,24 +36,12 @@ export class ManagerLogin extends Component {
 
 
   handlePress() {
-    this.props.loginManager(this.state, () => this.props.navigation.navigate('ManagerDashboard'));
-    this.setState({
-      beginLoading: true
-    })
+    this.props.loginManager(this.state, () => Actions.managerDashboard());
   }
 
   render() {
     return (
       <Container>
-        <Header>
-          <BackButton />
-          <Body>
-            <Title>
-              Login
-            </Title>
-          </Body>
-          <Right />>
-        </Header>
         <Content contentContainerStyle={{ flex: 1, backgroundColor: '#F0EBD8' }}>
           <Form style={{backgroundColor: 'white'}}>
             <Item>
