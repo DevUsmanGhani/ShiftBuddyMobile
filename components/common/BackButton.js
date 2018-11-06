@@ -6,7 +6,7 @@ class BackButton extends React.Component  {
   render() {
     return (
       <Left>
-        <Button 
+        <Button
           transparent
           onPress={() => this.props.navigation.goBack()}
         >
@@ -16,5 +16,5 @@ class BackButton extends React.Component  {
     )
   }
 }
-  
+
 export default withNavigation(BackButton);
