@@ -1,18 +1,34 @@
-import React, { Component } from 'react'
-import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text } from 'native-base';
-import BackButton from '../common/BackButton';
+import React, { Component } from "react";
+import {
+  Container,
+  Header,
+  Title,
+  Content,
+  Footer,
+  FooterTab,
+  Button,
+  Left,
+  Right,
+  Body,
+  Icon,
+  Text,
+  Card,
+  CardItem
+} from "native-base";
+import BackButton from "../common/BackButton";
+import { connect } from "react-redux";
+import { FontAwesome } from "@expo/vector-icons";
 
-export default class EmployeeDashboard extends Component {
+class EmployeeDashboard extends Component {
   constructor(props) {
     super(props);
-    this.state = {date: new Date()};
+    this.state = {
+      date: new Date()
+    };
   }
 
   componentDidMount() {
-    this.timerID = setInterval(
-      () => this.tick(),
-      1000
-    );
+    this.timerID = setInterval(() => this.tick(), 1000);
   }
 
   componentWillUnmount() {
@@ -26,30 +42,78 @@ export default class EmployeeDashboard extends Component {
   }
 
   render() {
+    const { employee } = this.props.employee;
     return (
       <Container>
         <Header>
           <BackButton />
           <Body>
-            <Title>
-              Dashboard
-            </Title>
+            <Title>Dashboard</Title>
           </Body>
-          <Right /> 
+          <Right />
         </Header>
-        <Content contentContainerStyle={{ justifyContent: 'center', alignItems: 'center', flex: 1, backgroundColor: '#F0EBD8' }}>
-          <Button danger full large style={{height: 300}} onPress={() => this.props.navigation.navigate("EmployeeShift")}>
+        <Content contentContainerStyle={{ flex: 1, backgroundColor: "seashell" }}>
+          <Card>
+            <CardItem>
+              <Body style={{ alignItems: "center" }}>
+                <Text style={{ fontWeight: "bold", marginBottom: 10 }}>
+                  Welcome {employee.attributes && employee.attributes.name}
+                </Text>
+                <FontAwesome name="user-circle" size={128} color="orange" />
+              </Body>
+            </CardItem>
+          </Card>
+          <Card style={{ marginTop: 50, paddingTop: 30, paddingBottom: 30 }}>
+            <CardItem>
+              <Body style={{ alignItems: "center" }}>
+                <Button
+                large
+                  style={{
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                    marginBottom: 20,
+                    marginTop: 20
+                  }}
+                >
+                  <Text>Begin Shift</Text>
+                </Button>
+                <Text>{this.state.date.toLocaleString()}</Text>
+              </Body>
+            </CardItem>
+          </Card>
+        </Content>
+        <Footer>
+          <FooterTab>
+            <Body>
+              <Text>
+              </Text>
+            </Body>
+          </FooterTab>
+        </Footer>
+      </Container>
+    );
+  }
+}
+
+const mapStateToProps = state => ({
+  employee: state.employee
+});
+
+const mapDispatchToProps = {};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(EmployeeDashboard);
+{
+  /* <Button danger full large style={{height: 300}} onPress={() => this.props.navigation.navigate("EmployeeShift")}>
             <Text>
-              Start Shift
+              Start Shift Employee:
             </Text>
           </Button>
           <Button primary full disabled large>
             <Text>
               {this.state.date.toLocaleString()}
             </Text>
-          </Button>
-        </Content>  
-      </Container>
-    )
-  }
+          </Button> */
 }

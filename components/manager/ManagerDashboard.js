@@ -30,7 +30,6 @@ export class ManagerDashboard extends Component {
 
   render() {
     const { manager, employees } = this.state;
-    console.log('render')
     return (
       <Container>
         <Header>
@@ -57,7 +56,6 @@ export class ManagerDashboard extends Component {
             </CardItem>
                   {employees.slice(0, 5).map(employee => {
                     name = employee.name
-                    console.log(employee.name)
                     return (
                       <CardItem style={{
                         borderBottomColor: 'grey',

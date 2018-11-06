@@ -1,18 +1,42 @@
 import React, { Component } from 'react'
 import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, Form, Item, Input } from 'native-base';
 import BackButton from '../common/BackButton';
+import { loginEmployee } from '../../modules/employee';
+import { connect } from 'react-redux';
 
-export default class EmployeeLogin extends Component {
+class EmployeeLogin extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
-      password: '',
+      username: 'usman',
+      password: '123456',
     }
     this.handlePress = this.handlePress.bind(this);
   }
+
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.employee.isAuthenticated) {
+      this.props.navigation.navigate('EmployeeDashboard')
+    }
+  }
+
+  componentWillMount() {
+    this.setState({
+      beginLoading: false
+    })
+  }
+
+  componentWillUnmount() {
+    this.setState({
+      beginLoading: false
+    })
+  }
+
   handlePress() {
-    this.props.navigation.navigate('EmployeeDashboard');
+    this.props.loginEmployee(this.state, () => this.props.navigation.navigate('EmployeeDashboard'));
+    this.setState({
+      beginLoading: true
+    })
   }
   render() {
     return (
@@ -31,9 +55,9 @@ export default class EmployeeLogin extends Component {
             <Item>
               <Input
                 autofocus
-                placeholder='Enter Email'
-                onChangeText={(email) => this.setState({email})}
-                value={this.state.email}
+                placeholder='Enter Username'
+                onChangeText={(username) => this.setState({username})}
+                value={this.state.username}
               />
             </Item>
             <Item>
@@ -55,3 +79,13 @@ export default class EmployeeLogin extends Component {
     )
   }
 }
+
+const mapDispatchToProps = {
+  loginEmployee,
+}
+
+const mapStateToProps = state => ({
+  employee: state.employee
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(EmployeeLogin)
