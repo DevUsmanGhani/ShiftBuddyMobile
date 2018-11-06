@@ -67,6 +67,7 @@ class EmployeeDashboard extends Component {
             <CardItem>
               <Body style={{ alignItems: "center" }}>
                 <Button
+                onPress={() => this.props.navigation.navigate("EmployeeShift")}
                 large
                   style={{
                     marginLeft: "auto",

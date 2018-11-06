@@ -5,7 +5,6 @@ import ManagerLogin from '../components/manager/ManagerLogin';
 import ManagerDashboard from '../components/manager/ManagerDashboard';
 import EmployeeDashboard from '../components/employee/EmployeeDashboard';
 import EmployeeShift from '../components/employee/EmployeeShift';
-
 export default createStackNavigator(
   {
     Home: { screen: HomeScreen },
@@ -16,7 +15,7 @@ export default createStackNavigator(
     EmployeeShift: { screen: EmployeeShift }
   },
   {
-  initialRouteName: 'EmployeeDashboard',
+  initialRouteName: 'Home',
   headerMode: 'none',
   }
 );
