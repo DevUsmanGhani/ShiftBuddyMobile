@@ -8,8 +8,8 @@ export class ManagerLogin extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: 'taimur018@gmail.com',
-      password: 'admin2',
+      email: 'usman',
+      password: '123456',
       beginLoading: false,
     }
     this.handlePress = this.handlePress.bind(this);
@@ -53,7 +53,7 @@ export class ManagerLogin extends Component {
           </Body>
           <Right />>
         </Header>
-        <Content contentContainerStyle={{ flex: 1, backgroundColor: '#F0EBD8' }}>
+        <Content contentContainerStyle={{ flex: 1, backgroundColor: 'seashell' }}>
           <Form style={{backgroundColor: 'white'}}>
             <Item>
               <Input

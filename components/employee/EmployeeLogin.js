@@ -26,18 +26,18 @@ export default class EmployeeLogin extends Component {
           </Body>
           <Right />
         </Header>
-        <Content  contentContainerStyle={{ flex: 1, backgroundColor: '#F0EBD8' }}>
+        <Content  contentContainerStyle={{ flex: 1, backgroundColor: 'seashell' }}>
         <Form style={{backgroundColor: 'white'}}>
             <Item>
-              <Input 
-                autofocus 
-                placeholder='Enter Email' 
-                onChangeText={(email) => this.setState({email})} 
-                value={this.state.email} 
+              <Input
+                autofocus
+                placeholder='Enter Email'
+                onChangeText={(email) => this.setState({email})}
+                value={this.state.email}
               />
             </Item>
             <Item>
-              <Input 
+              <Input
                 placeholder='Enter Password'
                 secureTextEntry
                 onChangeText={(password) => this.setState({password})}

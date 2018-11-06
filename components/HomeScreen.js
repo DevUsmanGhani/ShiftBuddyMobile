@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text } from 'native-base';
+import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, Card, CardItem} from 'native-base';
 
 export default class HomeScreen extends Component {
   render() {
@@ -10,7 +10,7 @@ export default class HomeScreen extends Component {
             <Title style={{color: 'orange'}}>Shift Buddy Pro</Title>
           </Body>
         </Header>
-        <Content contentContainerStyle={{ justifyContent: 'center', flex: 1, backgroundColor: '#F0EBD8' }}>
+        <Content contentContainerStyle={{ justifyContent: 'center', flex: 1, backgroundColor: 'seashell' }}>
           <Button full large bordered warning style={{backgroundColor: "#FFF", height: 100}} onPress={() => this.props.navigation.navigate("ManagerLogin")}>
             <Text>
               Manager Login

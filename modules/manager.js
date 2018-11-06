@@ -24,7 +24,7 @@ export default (state = initialState, action) => {
       }
     case LOGOUT:
       return initialState;
-    default: 
+    default:
       return state;
   }
 }
@@ -49,22 +49,22 @@ export const logoutManager = () => dispatch => {
 // Side Effects
 export const loginManager = (managerData, callback) => dispatch => {
   axios
-  .post('http://shiftbuddypro.herokuapp.com/api/managers/login', managerData)
+  .post('http://localhost:8000/api//v1/managers/authenticate', managerData)
     .then(res => {
       // Save to local storage
-      const { token } = res.data;
-      // Set token to local storage
+      const { auth_token } = res.data;
+      // Set auth_token to local storage
       _storeData = async () => {
         try {
-          await AsyncStorage.setItem('jwtToken', token);
+          await AsyncStorage.setItem('jwtToken', auth_token);
         } catch (error) {
           console.log(error);
         }
       }
       // Set token to Auth Header
-      setAuthToken(token);
+      setAuthToken(auth_token);
       // Decode token to get Manager Data
-      const decodedToken = jwt_decode(token);
+      const decodedToken = jwt_decode(auth_token);
       // Set Current Manager
       dispatch(setCurrentManager(decodedToken));
     })
