@@ -21,29 +21,40 @@ import { StyleSheet, TextInput, Alert } from "react-native";
 import { connect } from "react-redux";
 
 export class PaidOutsView extends Component {
-
   render() {
-    const { paidOuts } = this.props.employeeShift
-    if(paidOuts.length == 0) {
-      return(
-        <View style={{ marginTop: 40 }}>
-        <Body>
-          <Text>
-            No paid outs
-          </Text>
-        </Body>
-      </View>
-      )
-    }
-    else{
+    const { paidOuts } = this.props.employeeShift;
+    if (paidOuts.length == 0) {
       return (
         <View style={{ marginTop: 40 }}>
+          <Body>
+            <Text>No paid outs</Text>
+          </Body>
+        </View>
+      );
+    } else {
+      return (
+        <View
+          style={{
+            flex: 1,
+            flexDirection: "row",
+            justifyContent: "flex-start",
+            flexWrap: 'wrap',
+            marginTop: 20
+          }}
+        >
           {paidOuts.map(paidOut => {
-            return(
-                <Text>
-                  {paidOut.company} {paidOut.amount}
-                </Text>
-            )
+            return (
+              <View style={{ flexWrap: "wrap", alignSelf: "flex-start", margin: 1 }}
+              >
+                <Button
+                  light
+                >
+                  <Text>
+                    {paidOut.company} ${paidOut.amount}
+                  </Text>
+                </Button>
+              </View>
+            );
           })}
         </View>
       );
