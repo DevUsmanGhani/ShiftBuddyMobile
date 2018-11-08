@@ -1,6 +1,4 @@
-import React, {
-  Component
-} from "react";
+import React, { Component } from "react";
 import {
   View,
   Container,
@@ -16,12 +14,13 @@ import {
   Icon,
   Text,
   Card,
-  CardItem
+  CardItem,
 } from "native-base";
 import BackButton from "../common/BackButton";
 import { StyleSheet } from "react-native";
 import { connect } from "react-redux";
 import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
+import PaidOut from "./employeeShift/PaidOuts";
 
 class EmployeeShift extends Component {
   render() {
@@ -40,10 +39,12 @@ class EmployeeShift extends Component {
             backgroundColor: "seashell"
           }}
         >
-          <View style={{ flex: 4 }} />
+          <View style={style.view}>
+              <PaidOut />
+          </View>
           <View
             style={{
-              marginTop: 50,
+              marginTop: 20,
               flex: 2,
               flexDirection: "row",
               justifyContent: "space-around"
@@ -109,6 +110,20 @@ const style = StyleSheet.create({
   },
   buttonText: {
     color: "charcoal"
+  },
+  view: {
+    flex: 8,
+    backgroundColor: 'white',
+    marginTop: 10,
+    shadowOpacity: 0.75,
+    marginLeft: 5,
+    marginRight: 5,
+    shadowRadius: 5,
+    shadowColor: 'grey',
+    shadowOffset: { height: 0, width: 0 },
+    borderColor: '#ddd',
+    borderRadius: 2,
+    borderWidth: 2,
   }
 });
 
@@ -119,3 +134,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {};
 
 export default EmployeeShift;
+// border-width: 1;
+//   border-radius: 2;
+//   border-color: #ddd;
