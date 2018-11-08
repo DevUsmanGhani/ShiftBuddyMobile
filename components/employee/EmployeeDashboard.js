@@ -20,6 +20,7 @@ import { connect } from "react-redux";
 import { FontAwesome } from "@expo/vector-icons";
 import { setCurrentShift } from "../../modules/employeeShift";
 import axios from "axios";
+import { Alert } from 'react-native';
 
 class EmployeeDashboard extends Component {
   constructor(props) {
@@ -43,18 +44,29 @@ class EmployeeDashboard extends Component {
     });
   }
 
-  handlePress() {
+  onShiftCreate() {
     axios
-      .post(
-        `http://localhost:8000/api/v1/managers/${
-          this.props.employee.employee.attributes.manager_id
-        }/employees/${this.props.employee.employee.id}}/shifts`
-      )
-      .then(res => {
-        this.props.setCurrentShift(res.data.id);
-      })
-      .then(this.props.navigation.navigate("EmployeeShift"))
-      .catch(err => console.log(err));
+    .post(
+      `http://localhost:8000/api/v1/managers/${
+        this.props.employee.employee.attributes.manager_id
+      }/employees/${this.props.employee.employee.id}}/shifts`
+    )
+    .then(res => {
+      this.props.setCurrentShift(res.data.id);
+    })
+    .then(this.props.navigation.navigate("EmployeeShift"))
+    .catch(err => console.log(err));
+  }
+
+  handlePress() {
+    Alert.alert(
+      'Confirm',
+      'You are about to begin a new shift.',
+      [
+        {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+        {text: 'Ok', onPress: () => this.onShiftCreate()},
+      ],
+    )
   }
 
   render() {

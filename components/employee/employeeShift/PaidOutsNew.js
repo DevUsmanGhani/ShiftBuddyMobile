@@ -17,9 +17,10 @@ import {
   Input,
   View
 } from "native-base";
-import axios from 'axios';
-import { StyleSheet, TextInput } from "react-native";
-import { connect } from 'react-redux'
+import axios from "axios";
+import { StyleSheet, TextInput, Alert } from "react-native";
+import { connect } from "react-redux";
+import { addPaidOut } from '../../../modules/employeeShift';
 
 export class PaidOutsNew extends Component {
   constructor(props) {
@@ -27,15 +28,25 @@ export class PaidOutsNew extends Component {
     this.state = {
       company: "",
       amount: "",
-      shift_id: this.props.shift_id
     };
   }
 
-
   onSubmit() {
-    const { employee } = this.props.employee
-    const{ id } = this.props.employeeShift
-    axios.post(`http://localhost:8000/api/v1/managers/${employee.attributes.manager_id}/employees/${employee.id}/shifts/${id}/paid_outs`, this.state)
+    const { employee } = this.props.employee;
+    const { id } = this.props.employeeShift;
+    axios
+      .post(
+        `http://localhost:8000/api/v1/managers/${
+          employee.attributes.manager_id
+        }/employees/${employee.id}/shifts/${id}/paid_outs`,
+        this.state
+      )
+      .then(() => {
+        Alert.alert("Paid Out created", "A paid out has been added to your shift report.", [
+          { text: "Ok" }
+        ]);
+        this.props.addPaidOut(this.state);
+      });
   }
   render() {
     return (
@@ -59,12 +70,12 @@ export class PaidOutsNew extends Component {
             borderBottmColor: "gray",
             borderBottomWidth: 1
           }}
-          keyboardType='decimal-pad'
+          keyboardType="decimal-pad"
           onChangeText={amount => this.setState({ amount })}
           value={this.state.amount}
         />
         <Text style={styles.label}>Amount</Text>
-        <Button  onPress={() => this.onSubmit()} style={styles.submitButton}>
+        <Button onPress={() => this.onSubmit()} style={styles.submitButton}>
           <Text>Submit</Text>
         </Button>
       </View>
@@ -77,12 +88,16 @@ const styles = StyleSheet.create({
     color: "grey"
   },
   submitButton: {
-    alignSelf: 'flex-end'
+    alignSelf: "flex-end"
   }
 });
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   employee: state.employee,
   employeeShift: state.employeeShift
-})
+});
 
-export default connect(mapStateToProps)(PaidOutsNew)
+const mapDispatchToProps = {
+  addPaidOut
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PaidOutsNew)

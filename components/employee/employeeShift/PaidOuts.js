@@ -20,27 +20,29 @@ import {
 import { StyleSheet, TextInput } from "react-native";
 import { connect } from "react-redux";
 import PaidOutsNew from "./PaidOutsNew";
+import PaidOutsView from './PaidOutsView'
 
 export class PaidOuts extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentView: "view" //'new' or 'all'
+      currentPage: "view" //'new' or 'all'
     };
   }
   render() {
+    const pageNew = this.state.currentPage == 'new'
     return (
       <Body style={styles.container}>
         <Text style={styles.header}>Paid outs</Text>
         <View style={styles.buttonContainer}>
-          <Button light style={styles.button}>
+          <Button onPress={() => this.setState({currentPage: 'view'})}  light={pageNew} style={styles.button}>
             <Text>All</Text>
           </Button>
-          <Button style={styles.button}>
+          <Button style={styles.button} onPress={() => this.setState({currentPage: 'new'})} light={!pageNew}>
             <Text>New</Text>
           </Button>
         </View>
-        <PaidOutsNew />
+        {pageNew ? <PaidOutsNew /> : <PaidOutsView /> }
       </Body>
     );
   }
