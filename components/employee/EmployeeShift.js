@@ -14,7 +14,7 @@ import {
   Icon,
   Text,
   Card,
-  CardItem,
+  CardItem
 } from "native-base";
 import BackButton from "../common/BackButton";
 import { StyleSheet } from "react-native";
@@ -24,6 +24,8 @@ import PaidOut from "./employeeShift/PaidOuts";
 
 class EmployeeShift extends Component {
   render() {
+    const { employee } = this.props.employee
+    const { employeeShift } = this.props
     return (
       <Container>
         <Header>
@@ -40,7 +42,7 @@ class EmployeeShift extends Component {
           }}
         >
           <View style={style.view}>
-              <PaidOut />
+            <PaidOut manager_id={employee.attributes.manager_id} employee_id={employee.attributes.id} shift_id={employeeShift.attributes.shift_id}/>
           </View>
           <View
             style={{
@@ -113,17 +115,17 @@ const style = StyleSheet.create({
   },
   view: {
     flex: 8,
-    backgroundColor: 'white',
+    backgroundColor: "white",
     marginTop: 10,
     shadowOpacity: 0.75,
     marginLeft: 5,
     marginRight: 5,
     shadowRadius: 5,
-    shadowColor: 'grey',
+    shadowColor: "grey",
     shadowOffset: { height: 0, width: 0 },
-    borderColor: '#ddd',
+    borderColor: "#ddd",
     borderRadius: 2,
-    borderWidth: 2,
+    borderWidth: 2
   }
 });
 

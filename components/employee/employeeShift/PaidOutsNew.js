@@ -24,11 +24,11 @@ export class PaidOutsNew extends Component {
   state = {
     company: "",
     amount: "",
-    shift_id: 326
+    shift_id: this.props.shift_id
   };
 
   onSubmit() {
-    axios.post(`http://localhost:8000/api/v1/managers/${302}/employees/${368}/shifts/${326}/paid_outs`, this.state)
+    axios.post(`http://localhost:8000/api/v1/managers/${this.props.manager_id}/employees/${this.props.employee_id}/shifts/${this.props.shift_id}/paid_outs`, this.state)
   }
   render() {
     return (
@@ -37,7 +37,7 @@ export class PaidOutsNew extends Component {
           style={{
             height: 40,
             width: 300,
-            borderBottmColor: "gray",
+            borderBottomColor: "gray",
             borderBottomWidth: 1
           }}
           onChangeText={company => this.setState({ company })}
