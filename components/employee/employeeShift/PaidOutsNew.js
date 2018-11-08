@@ -19,16 +19,23 @@ import {
 } from "native-base";
 import axios from 'axios';
 import { StyleSheet, TextInput } from "react-native";
+import { connect } from 'react-redux'
 
 export class PaidOutsNew extends Component {
-  state = {
-    company: "",
-    amount: "",
-    shift_id: this.props.shift_id
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      company: "",
+      amount: "",
+      shift_id: this.props.shift_id
+    };
+  }
+
 
   onSubmit() {
-    axios.post(`http://localhost:8000/api/v1/managers/${this.props.manager_id}/employees/${this.props.employee_id}/shifts/${this.props.shift_id}/paid_outs`, this.state)
+    const { employee } = this.props.employee
+    const{ id } = this.props.employeeShift
+    axios.post(`http://localhost:8000/api/v1/managers/${employee.attributes.manager_id}/employees/${employee.id}/shifts/${id}/paid_outs`, this.state)
   }
   render() {
     return (
@@ -73,5 +80,9 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end'
   }
 });
+const mapStateToProps = (state) => ({
+  employee: state.employee,
+  employeeShift: state.employeeShift
+})
 
-export default PaidOutsNew;
+export default connect(mapStateToProps)(PaidOutsNew)

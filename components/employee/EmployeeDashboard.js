@@ -18,6 +18,8 @@ import {
 import BackButton from "../common/BackButton";
 import { connect } from "react-redux";
 import { FontAwesome } from "@expo/vector-icons";
+import { setCurrentShift } from "../../modules/employeeShift";
+import axios from "axios";
 
 class EmployeeDashboard extends Component {
   constructor(props) {
@@ -41,6 +43,20 @@ class EmployeeDashboard extends Component {
     });
   }
 
+  handlePress() {
+    axios
+      .post(
+        `http://localhost:8000/api/v1/managers/${
+          this.props.employee.employee.attributes.manager_id
+        }/employees/${this.props.employee.employee.id}}/shifts`
+      )
+      .then(res => {
+        this.props.setCurrentShift(res.data.id);
+      })
+      .then(this.props.navigation.navigate("EmployeeShift"))
+      .catch(err => console.log(err));
+  }
+
   render() {
     const { employee } = this.props.employee;
     return (
@@ -52,7 +68,9 @@ class EmployeeDashboard extends Component {
           </Body>
           <Right />
         </Header>
-        <Content contentContainerStyle={{ flex: 1, backgroundColor: "seashell" }}>
+        <Content
+          contentContainerStyle={{ flex: 1, backgroundColor: "seashell" }}
+        >
           <Card>
             <CardItem>
               <Body style={{ alignItems: "center" }}>
@@ -67,8 +85,8 @@ class EmployeeDashboard extends Component {
             <CardItem>
               <Body style={{ alignItems: "center" }}>
                 <Button
-                onPress={() => this.props.navigation.navigate("EmployeeShift")}
-                large
+                  onPress={() => this.handlePress()}
+                  large
                   style={{
                     marginLeft: "auto",
                     marginRight: "auto",
@@ -86,8 +104,7 @@ class EmployeeDashboard extends Component {
         <Footer>
           <FooterTab>
             <Body>
-              <Text>
-              </Text>
+              <Text />
             </Body>
           </FooterTab>
         </Footer>
@@ -100,21 +117,11 @@ const mapStateToProps = state => ({
   employee: state.employee
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  setCurrentShift
+};
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(EmployeeDashboard);
-{
-  /* <Button danger full large style={{height: 300}} onPress={() => this.props.navigation.navigate("EmployeeShift")}>
-            <Text>
-              Start Shift Employee:
-            </Text>
-          </Button>
-          <Button primary full disabled large>
-            <Text>
-              {this.state.date.toLocaleString()}
-            </Text>
-          </Button> */
-}

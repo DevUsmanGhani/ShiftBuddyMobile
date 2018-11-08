@@ -24,8 +24,8 @@ import PaidOut from "./employeeShift/PaidOuts";
 
 class EmployeeShift extends Component {
   render() {
-    const { employee } = this.props.employee
-    const { employeeShift } = this.props
+    const { employee } = this.props.employee;
+    const { employeeShift } = this.props;
     return (
       <Container>
         <Header>
@@ -42,7 +42,8 @@ class EmployeeShift extends Component {
           }}
         >
           <View style={style.view}>
-            <PaidOut manager_id={employee.attributes.manager_id} employee_id={employee.attributes.id} shift_id={employeeShift.attributes.shift_id}/>
+            <PaidOut
+            />
           </View>
           <View
             style={{
@@ -130,12 +131,13 @@ const style = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-  employee: state.employee
+  employee: state.employee,
+  employeeShift: state.employeeShift
 });
 
 const mapDispatchToProps = {};
 
-export default EmployeeShift;
+export default connect(mapStateToProps)(EmployeeShift);
 // border-width: 1;
 //   border-radius: 2;
 //   border-color: #ddd;
