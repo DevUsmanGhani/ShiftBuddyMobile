@@ -62,7 +62,7 @@ export class CashDropsNew extends Component {
           value={this.state.number}
           keyboardType="decimal-pad"
         />
-        <Text style={styles.label}>number</Text>
+        <Text style={styles.label}>Number</Text>
 
         <TextInput
           style={{
