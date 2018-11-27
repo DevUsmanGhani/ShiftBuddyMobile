@@ -11,7 +11,7 @@ export default class HomeScreen extends Component {
           </Body>
         </Header>
         <Content contentContainerStyle={{ justifyContent: 'center', flex: 1, backgroundColor: 'seashell' }}>
-          <Button full large bordered warning style={{backgroundColor: "#FFF", height: 100}} onPress={() => this.props.navigation.navigate("ManagerLogin")}>
+          <Button full large bordered warning style={{backgroundColor: "white", height: 100}} onPress={() => this.props.navigation.navigate("ManagerLogin")}>
             <Text>
               Manager Login
             </Text>

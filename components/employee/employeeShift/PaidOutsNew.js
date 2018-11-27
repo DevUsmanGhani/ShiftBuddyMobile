@@ -55,7 +55,6 @@ export class PaidOutsNew extends Component {
           style={{
             height: 40,
             width: 300,
-            borderBottomColor: "gray",
             borderBottomWidth: 1
           }}
           onChangeText={company => this.setState({ company })}
@@ -67,7 +66,6 @@ export class PaidOutsNew extends Component {
           style={{
             height: 40,
             width: 300,
-            borderBottmColor: "gray",
             borderBottomWidth: 1
           }}
           keyboardType="decimal-pad"

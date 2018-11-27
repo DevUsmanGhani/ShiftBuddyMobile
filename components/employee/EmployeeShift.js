@@ -21,8 +21,27 @@ import { StyleSheet } from "react-native";
 import { connect } from "react-redux";
 import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
 import PaidOut from "./employeeShift/PaidOuts";
+import CashDrop from './employeeShift/CashDrop'
 
 class EmployeeShift extends Component {
+  state = {
+    currentPage: 'PaidOut'
+  }
+
+  currentPage() {
+    switch(this.state.currentPage) {
+      case 'CashDrop': {
+        return (
+          <CashDrop />
+        )
+      }
+      case 'PaidOut': {
+        return (
+          <PaidOut />
+        )
+      }
+    }
+  }
   render() {
     const { employee } = this.props.employee;
     const { employeeShift } = this.props;
@@ -42,8 +61,7 @@ class EmployeeShift extends Component {
           }}
         >
           <View style={style.view}>
-            <PaidOut
-            />
+            {this.currentPage()}
           </View>
           <View
             style={{
@@ -53,7 +71,7 @@ class EmployeeShift extends Component {
               justifyContent: "space-around"
             }}
           >
-            <Button style={style.button}>
+            <Button style={style.button} onPress={() => this.setState({currentPage: 'CashDrop'})}>
               <FontAwesome name="envelope" size={50} color="orange" />
               <Text style={style.buttonText}>Cash Drops</Text>
             </Button>
@@ -61,7 +79,7 @@ class EmployeeShift extends Component {
               <FontAwesome name="book" size={50} color="orange" />
               <Text style={style.buttonText}>Checks</Text>
             </Button>
-            <Button style={style.button}>
+            <Button style={style.button} onPress={() => this.setState({currentPage: 'PaidOut'})}>
               <FontAwesome name="money" size={50} color="orange" />
               <Text style={style.buttonText}>Paid Outs</Text>
             </Button>
