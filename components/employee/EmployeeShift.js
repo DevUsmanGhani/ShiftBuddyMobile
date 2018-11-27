@@ -20,8 +20,8 @@ import BackButton from "../common/BackButton";
 import { StyleSheet } from "react-native";
 import { connect } from "react-redux";
 import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
-import PaidOut from "./employeeShift/PaidOuts";
-import CashDrop from './employeeShift/CashDrop'
+import PaidOuts from "./employeeShift/PaidOuts";
+import CashDrops from './employeeShift/CashDrops'
 
 class EmployeeShift extends Component {
   state = {
@@ -32,12 +32,12 @@ class EmployeeShift extends Component {
     switch(this.state.currentPage) {
       case 'CashDrop': {
         return (
-          <CashDrop />
+          <CashDrops />
         )
       }
       case 'PaidOut': {
         return (
-          <PaidOut />
+          <PaidOuts />
         )
       }
     }

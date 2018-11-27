@@ -20,17 +20,16 @@ import {
 import axios from "axios";
 import { StyleSheet, TextInput, Alert } from "react-native";
 import { connect } from "react-redux";
-import { addPaidOut } from "../../../modules/employeeShift";
+import { addCashDrop } from '../../../modules/employeeShift';
 
-export class PaidOutsNew extends Component {
+export class CashDropsNew extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      company: "",
-      amount: ""
+      number: "",
+      amount: "",
     };
   }
-
   onSubmit() {
     const { employee } = this.props.employee;
     const { id } = this.props.employeeShift;
@@ -43,11 +42,11 @@ export class PaidOutsNew extends Component {
       )
       .then(() => {
         Alert.alert(
-          "Paid Out created",
-          "A paid out has been added to your shift report.",
+          "Cash Drop created",
+          "A cash drop has been added to your shift report.",
           [{ text: "Ok" }]
         );
-        this.props.addPaidOut(this.state);
+        this.props.addCashDrop(this.state);
       });
   }
   render() {
@@ -59,10 +58,11 @@ export class PaidOutsNew extends Component {
             width: 300,
             borderBottomWidth: 1
           }}
-          onChangeText={company => this.setState({ company })}
-          value={this.state.company}
+          onChangeText={number => this.setState({ number })}
+          value={this.state.number}
+          keyboardType="decimal-pad"
         />
-        <Text style={styles.label}>Company</Text>
+        <Text style={styles.label}>number</Text>
 
         <TextInput
           style={{
@@ -70,9 +70,9 @@ export class PaidOutsNew extends Component {
             width: 300,
             borderBottomWidth: 1
           }}
-          keyboardType="decimal-pad"
           onChangeText={amount => this.setState({ amount })}
           value={this.state.amount}
+          keyboardType="decimal-pad"
         />
         <Text style={styles.label}>Amount</Text>
         <Button onPress={() => this.onSubmit()} style={styles.submitButton}>
@@ -97,10 +97,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  addPaidOut
+  addCashDrop
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(PaidOutsNew);
+)(CashDropsNew);
