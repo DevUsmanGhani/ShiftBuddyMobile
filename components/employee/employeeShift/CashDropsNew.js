@@ -37,7 +37,7 @@ export class CashDropsNew extends Component {
       .post(
         `http://localhost:8000/api/v1/managers/${
           employee.attributes.manager_id
-        }/employees/${employee.id}/shifts/${id}/paid_outs`,
+        }/employees/${employee.id}/shifts/${id}/cash_drops`,
         this.state
       )
       .then(() => {
