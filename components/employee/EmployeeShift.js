@@ -21,7 +21,8 @@ import { StyleSheet } from "react-native";
 import { connect } from "react-redux";
 import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
 import PaidOuts from "./employeeShift/PaidOuts";
-import CashDrops from './employeeShift/CashDrops'
+import CashDrops from './employeeShift/CashDrops';
+import Checks from './employeeShift/Checks';
 
 class EmployeeShift extends Component {
   state = {
@@ -38,6 +39,11 @@ class EmployeeShift extends Component {
       case 'PaidOut': {
         return (
           <PaidOuts />
+        )
+      }
+      case 'Check': {
+        return (
+          <Checks />
         )
       }
     }
@@ -75,7 +81,7 @@ class EmployeeShift extends Component {
               <FontAwesome name="envelope" size={50} color="orange" />
               <Text style={style.buttonText}>Cash Drops</Text>
             </Button>
-            <Button style={style.button}>
+            <Button style={style.button} onPress={() => this.setState({currentPage: 'Check'})}>
               <FontAwesome name="book" size={50} color="orange" />
               <Text style={style.buttonText}>Checks</Text>
             </Button>

@@ -50,7 +50,7 @@ export class ChecksView extends Component {
                   light
                 >
                   <Text>
-                    {check.company} ${check.amount}
+                    {check.number}: {check.company} ${check.amount}
                   </Text>
                 </Button>
               </View>
