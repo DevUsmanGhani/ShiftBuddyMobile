@@ -23,6 +23,7 @@ import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
 import PaidOuts from "./employeeShift/PaidOuts";
 import CashDrops from './employeeShift/CashDrops';
 import Checks from './employeeShift/Checks';
+import Notes from './employeeShift/Notes';
 
 class EmployeeShift extends Component {
   state = {
@@ -44,6 +45,11 @@ class EmployeeShift extends Component {
       case 'Check': {
         return (
           <Checks />
+        )
+      }
+      case 'Note': {
+        return (
+          <Notes />
         )
       }
     }
@@ -109,7 +115,7 @@ class EmployeeShift extends Component {
               <MaterialCommunityIcons name="coin" size={50} color="orange" />
               <Text style={style.buttonText}>Change</Text>
             </Button>
-            <Button style={style.button}>
+            <Button style={style.button} onPress={() => this.setState({currentPage: 'Note'})}>
               <FontAwesome name="pencil-square-o" size={50} color="orange" />
               <Text style={style.buttonText}>Notes</Text>
             </Button>
