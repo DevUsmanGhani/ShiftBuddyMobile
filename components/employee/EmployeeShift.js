@@ -21,36 +21,28 @@ import { StyleSheet } from "react-native";
 import { connect } from "react-redux";
 import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
 import PaidOuts from "./employeeShift/PaidOuts";
-import CashDrops from './employeeShift/CashDrops';
-import Checks from './employeeShift/Checks';
-import Notes from './employeeShift/Notes';
+import CashDrops from "./employeeShift/CashDrops";
+import Checks from "./employeeShift/Checks";
+import Notes from "./employeeShift/Notes";
 
 class EmployeeShift extends Component {
   state = {
-    currentPage: 'PaidOut'
-  }
+    currentPage: "PaidOut"
+  };
 
   currentPage() {
-    switch(this.state.currentPage) {
-      case 'CashDrop': {
-        return (
-          <CashDrops />
-        )
+    switch (this.state.currentPage) {
+      case "CashDrop": {
+        return <CashDrops />;
       }
-      case 'PaidOut': {
-        return (
-          <PaidOuts />
-        )
+      case "PaidOut": {
+        return <PaidOuts />;
       }
-      case 'Check': {
-        return (
-          <Checks />
-        )
+      case "Check": {
+        return <Checks />;
       }
-      case 'Note': {
-        return (
-          <Notes />
-        )
+      case "Note": {
+        return <Notes />;
       }
     }
   }
@@ -59,12 +51,12 @@ class EmployeeShift extends Component {
     const { employeeShift } = this.props;
     return (
       <Container>
-        <Header>
-          <BackButton />
-          <Body>
+        <Header >
+          <Left style={{flex: 1}} />
+          <Body style={{ flex: 1, marginLeft: 'auto', marginRight: 'auto'}} >
             <Title>Shift Report</Title>
           </Body>
-          <Right />
+          <Right style={{flex: 1}}/>
         </Header>
         <Content
           contentContainerStyle={{
@@ -72,9 +64,7 @@ class EmployeeShift extends Component {
             backgroundColor: "seashell"
           }}
         >
-          <View style={style.view}>
-            {this.currentPage()}
-          </View>
+          <View style={style.view}>{this.currentPage()}</View>
           <View
             style={{
               marginTop: 20,
@@ -83,15 +73,24 @@ class EmployeeShift extends Component {
               justifyContent: "space-around"
             }}
           >
-            <Button style={style.button} onPress={() => this.setState({currentPage: 'CashDrop'})}>
+            <Button
+              style={style.button}
+              onPress={() => this.setState({ currentPage: "CashDrop" })}
+            >
               <FontAwesome name="envelope" size={50} color="orange" />
               <Text style={style.buttonText}>Cash Drops</Text>
             </Button>
-            <Button style={style.button} onPress={() => this.setState({currentPage: 'Check'})}>
+            <Button
+              style={style.button}
+              onPress={() => this.setState({ currentPage: "Check" })}
+            >
               <FontAwesome name="book" size={50} color="orange" />
               <Text style={style.buttonText}>Checks</Text>
             </Button>
-            <Button style={style.button} onPress={() => this.setState({currentPage: 'PaidOut'})}>
+            <Button
+              style={style.button}
+              onPress={() => this.setState({ currentPage: "PaidOut" })}
+            >
               <FontAwesome name="money" size={50} color="orange" />
               <Text style={style.buttonText}>Paid Outs</Text>
             </Button>
@@ -108,7 +107,7 @@ class EmployeeShift extends Component {
                 name="clipboard-flow"
                 size={50}
                 color="orange"
-                onPress={() => this.props.navigation.navigate('Inventory')}
+                onPress={() => this.props.navigation.navigate("Inventory")}
               />
               <Text style={style.buttonText}>Inventory</Text>
             </Button>
@@ -116,7 +115,10 @@ class EmployeeShift extends Component {
               <MaterialCommunityIcons name="coin" size={50} color="orange" />
               <Text style={style.buttonText}>Change</Text>
             </Button>
-            <Button style={style.button} onPress={() => this.setState({currentPage: 'Note'})}>
+            <Button
+              style={style.button}
+              onPress={() => this.setState({ currentPage: "Note" })}
+            >
               <FontAwesome name="pencil-square-o" size={50} color="orange" />
               <Text style={style.buttonText}>Notes</Text>
             </Button>
