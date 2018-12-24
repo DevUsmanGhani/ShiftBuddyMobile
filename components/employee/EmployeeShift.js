@@ -108,6 +108,7 @@ class EmployeeShift extends Component {
                 name="clipboard-flow"
                 size={50}
                 color="orange"
+                onPress={() => this.props.navigation.navigate('Inventory')}
               />
               <Text style={style.buttonText}>Inventory</Text>
             </Button>

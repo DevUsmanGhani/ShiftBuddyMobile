@@ -10,6 +10,7 @@ const ADD_INVENTORY_ITEM = "employeeShift/ADD_INVENTORY_ITEM ";
 const ADD_NOTE = "employeeShift/ADD_NOTE ";
 const ADD_CASH_DROP = "employeeShift/ADD_CASH_DROP ";
 const SET_CURRENT_PAGE = "employeeShift/SET_CURRENT_PAGE ";
+const GET_INVENTORY_ITEMS = "employeeShift/GET_INVENTORY_ITEMS";
 
 // Initial State
 const initialState = {
@@ -17,9 +18,14 @@ const initialState = {
   paidOuts: [],
   checks: [],
   cashDrops: [],
-  inventory_items: [],
+  inventory_items: [
+    {
+      name: 'vivazen',
+      start_amount: 0,
+    }
+  ],
   notes: [],
-  currentPage: 'CashDrops'
+  currentPage: "CashDrops"
 };
 
 // Reducer
@@ -35,90 +41,102 @@ export default (state = initialState, action = {}) => {
       return {
         ...state,
         paidOuts: [...state.paidOuts, action.payload]
-      }
+      };
     }
     case ADD_CHECK: {
       return {
         ...state,
         checks: [...state.checks, action.payload]
-      }
+      };
     }
     case ADD_INVENTORY_ITEM: {
       return {
         ...state,
         inventory_items: [...state.inventory_items, action.payload]
-      }
+      };
     }
     case ADD_NOTE: {
       return {
         ...state,
         notes: [...state.notes, action.payload]
-      }
+      };
     }
     case ADD_CASH_DROP: {
       return {
         ...state,
         cashDrops: [...state.cashDrops, action.payload]
-      }
+      };
     }
     case SET_CURRENT_PAGE: {
       return {
         ...state,
         currentPage: action.payload
-      }
+      };
+    }
+    case GET_INVENTORY_ITEMS: {
+      return {
+        ...state,
+        inventory_items: action.payload
+      };
     }
     default:
       return state;
   }
 };
 
-
 // Actions
-export const setCurrentShift = (id) => {
-  return({
+export const setCurrentShift = id => {
+  return {
     type: SET_CURRENT_SHIFT,
     payload: id
-  })
-}
+  };
+};
 
 export const addPaidOut = data => {
-  return({
+  return {
     type: ADD_PAID_OUT,
     payload: data
-  })
-}
+  };
+};
 
 export const addCheck = data => {
-  return({
+  return {
     type: ADD_CHECK,
     payload: data
-  })
-}
+  };
+};
 
 export const addCashDrop = data => {
-  return({
+  return {
     type: ADD_CASH_DROP,
     payload: data
-  })
-}
+  };
+};
 
 export const addNote = data => {
-  return({
+  return {
     type: ADD_NOTE,
     payload: data
-  })
-}
+  };
+};
 
 export const addInventoryItem = data => {
-  return({
+  return {
     type: ADD_INVENTORY_ITEM,
     payload: data
-  })
-}
+  };
+};
 
-export const setCurrentPage =  page => {
-  return({
+export const setCurrentPage = page => {
+  return {
     type: SET_CURRENT_PAGE,
     payload: page
-  })
-}
+  };
+};
+
+export const getInventoryItems = data => {
+  return {
+    type: GET_INVENTORY_ITEMS,
+    payload: data
+  };
+};

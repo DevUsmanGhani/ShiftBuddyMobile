@@ -8,7 +8,7 @@ import axiosMiddleware from 'redux-axios-middleware';
 import rootReducer from './modules';
 
 const client = axios.create({
-  baseURL: '104.181.173.219:5000',
+  baseURL: '104.181.173.219:8000',
 });
 
 const middlewares = [axiosMiddleware(client), thunk];
