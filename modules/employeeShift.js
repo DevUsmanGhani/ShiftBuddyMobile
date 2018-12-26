@@ -11,19 +11,15 @@ const ADD_NOTE = "employeeShift/ADD_NOTE ";
 const ADD_CASH_DROP = "employeeShift/ADD_CASH_DROP ";
 const SET_CURRENT_PAGE = "employeeShift/SET_CURRENT_PAGE ";
 const GET_INVENTORY_ITEMS = "employeeShift/GET_INVENTORY_ITEMS";
+const SET_INVENTORY_ITEM_FIELD = "employeeShift/SET_INVENTORY_ITEM_FIELD";
 
 // Initial State
 const initialState = {
   id: 0,
+  inventoryItemField: "start_amount",
   paidOuts: [],
   checks: [],
   cashDrops: [],
-  inventory_items: [
-    {
-      name: 'vivazen',
-      start_amount: 0,
-    }
-  ],
   notes: [],
   currentPage: "CashDrops"
 };
@@ -77,6 +73,12 @@ export default (state = initialState, action = {}) => {
       return {
         ...state,
         inventory_items: action.payload
+      };
+    }
+    case SET_INVENTORY_ITEM_FIELD: {
+      return {
+        ...state,
+        inventoryItemField: action.payload
       };
     }
     default:
@@ -140,3 +142,10 @@ export const getInventoryItems = data => {
     payload: data
   };
 };
+
+export const setInventoryItemField = field => {
+  return {
+    type: SET_INVENTORY_ITEM_FIELD,
+    payload: field
+  };
+ };

@@ -18,7 +18,7 @@ export default createStackNavigator(
     Inventory: { screen: Inventory }
   },
   {
-  initialRouteName: 'Inventory',
+  initialRouteName: 'Home',
   headerMode: 'none',
   }
 );
