@@ -1,12 +1,12 @@
-import axios from 'axios';
-import setAuthToken from '../utils/setAuthToken';
-import jwt_decode from 'jwt-decode';
-import { AsyncStorage } from "react-native"
-import isEmpty from '../utils/isEmpty';
+import axios from "axios";
+import setAuthToken from "../utils/setAuthToken";
+import jwt_decode from "jwt-decode";
+import { AsyncStorage } from "react-native";
+import isEmpty from "../utils/isEmpty";
 
-const SET_CURRENT_MANAGER = 'manager/SET_CURRENT_MANAGER';
-const GET_ERRORS = 'manager/GET_ERRORS';
-const LOGOUT = 'manager/LOG_OUT';
+const SET_CURRENT_MANAGER = "manager/SET_CURRENT_MANAGER";
+const GET_ERRORS = "manager/GET_ERRORS";
+const LOGOUT = "manager/LOG_OUT";
 
 const initialState = {
   isAuthenticated: false,
@@ -15,52 +15,52 @@ const initialState = {
 
 // Reducer
 export default (state = initialState, action) => {
-  switch(action.type){
+  switch (action.type) {
     case SET_CURRENT_MANAGER:
       return {
         ...state,
         isAuthenticated: !isEmpty(action.payload),
-        managerData: action.payload,
-      }
+        managerData: action.payload
+      };
     case LOGOUT:
       return initialState;
     default:
       return state;
   }
-}
+};
 
 // Set logged in manager
 export const setCurrentManager = decodedToken => {
   return {
     type: SET_CURRENT_MANAGER,
     payload: decodedToken
-  }
-}
+  };
+};
 
 // Logout - Delete manager token
 export const logoutManager = () => dispatch => {
   localStorage.clear();
   dispatch({
     type: LOGOUT,
-    payload: {},
-  })
-}
+    payload: {}
+  });
+};
 
 // Side Effects
 export const loginManager = (managerData, callback) => dispatch => {
   axios
-  .post('http://localhost:8000/api//v1/managers/authenticate', managerData)
+    .post("http://localhost:8000/api//v1/managers/authenticate", managerData)
     .then(res => {
       // Save to local storage
       const { auth_token } = res.data;
       // Set auth_token to local storage
       _storeData = async () => {
         try {
-          await AsyncStorage.setItem('jwtToken', auth_token);
+          await AsyncStorage.setItem("jwtToken", auth_token);
         } catch (error) {
           console.log(error);
         }
-      }
+      };
       // Set token to Auth Header
       setAuthToken(auth_token);
       // Decode token to get Manager Data
@@ -70,6 +70,6 @@ export const loginManager = (managerData, callback) => dispatch => {
     })
     .then(() => callback())
     .catch(err => {
-      console.log(err)
-    })
-}
+      console.log(err);
+    });
+};

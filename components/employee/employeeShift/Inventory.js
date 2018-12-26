@@ -30,23 +30,10 @@ export class Inventory extends Component {
   state = {
     currentIndex: 0,
     currentValue: 0,
-    inventoryItems: [
-      {
-        name: "Vivazen",
-        start_amount: 0,
-        end_amount: 0,
-        id: 4
-      },
-      {
-        name: "Bali",
-        start_amount: 0,
-        end_amount: 0,
-        id: 5
-      }
-    ]
+    inventoryItems: []
   };
 
-  ddsfcomponentDidMount() {
+  componentDidMount() {
     axios
       .get(
         `http://localhost:8000/api/v1/managers/${
@@ -58,7 +45,9 @@ export class Inventory extends Component {
       .then(response => {
         this.setState({ inventoryItems: response.data });
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   emptyInventoryView() {
@@ -68,7 +57,15 @@ export class Inventory extends Component {
   inventoryView(item, field) {
     return (
       <View style={{ flex: 1, marginLeft: "auto", marginRight: "auto" }}>
-        <Text style={{ fontSize: 12, color: "orange", fontWeight: "bold", marginTop: 25, marginLeft: 'auto' }}>
+        <Text
+          style={{
+            fontSize: 12,
+            color: "orange",
+            fontWeight: "bold",
+            marginTop: 25,
+            marginLeft: "auto"
+          }}
+        >
           {this.state.currentIndex + 1}/{this.state.inventoryItems.length}
         </Text>
         <Text
@@ -80,10 +77,12 @@ export class Inventory extends Component {
           }}
         >
           Please enter the{" "}
-          {this.props.employeeShift.inventoryItemField == "start_amount"
-            ? "starting amount"
-            : "ending amount"}{" "}
-          amount of the item below
+          {this.props.employeeShift.inventoryItemField == "start_amount" ? (
+            <Text style={{fontSize: 13, fontWeight: 'bold'}}>starting amount </Text>
+          ) : (
+            <Text style={{fontSize: 13, fontWeight: 'bold'}}>ending amount </Text>
+          )}
+           of the item below
         </Text>
         <Text style={{ marginLeft: "auto", marginRight: "auto" }}>
           <Text style={{ fontWeight: "bold", fontSize: 30 }}>
@@ -303,10 +302,12 @@ export class Inventory extends Component {
           <Right style={{ flex: 1 }} />
         </Header>
         <Content>
-          {this.inventoryView(
-            inventoryItems[this.state.currentIndex],
-            this.props.employeeShift.inventoryItemField
-          )}
+          {this.state.inventoryItems.length == 0
+            ? ""
+            : this.inventoryView(
+                inventoryItems[this.state.currentIndex],
+                this.props.employeeShift.inventoryItemField
+              )}
         </Content>
       </Container>
     );

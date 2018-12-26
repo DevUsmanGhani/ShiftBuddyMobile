@@ -20,14 +20,14 @@ import {
 import axios from "axios";
 import { StyleSheet, TextInput, Alert } from "react-native";
 import { connect } from "react-redux";
-import { addCashDrop } from '../../../modules/employeeShift';
+import { addCashDrop } from "../../../modules/employeeShift";
 
 export class CashDropsNew extends Component {
   constructor(props) {
     super(props);
     this.state = {
       number: "",
-      amount: "",
+      amount: ""
     };
   }
   onSubmit() {

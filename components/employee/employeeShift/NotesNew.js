@@ -27,7 +27,7 @@ export class NotesNew extends Component {
     super(props);
     this.state = {
       title: "",
-      message: "",
+      message: ""
     };
   }
 
