@@ -51,7 +51,7 @@ export const logoutEmployee = () => dispatch => {
 export const loginEmployee = (employeeData, callback) => dispatch => {
   axios
     .post(
-      "http://localhost:8000/api/v1/managers/employees/authenticate",
+      "http://ef412a67.ngrok.io/api/v1/managers/employees/authenticate",
       employeeData
     )
     .then(res => {
@@ -72,7 +72,9 @@ export const loginEmployee = (employeeData, callback) => dispatch => {
       // Set Currentemployee
       axios
         .get(
-          `http://localhost:8000/api/v1/employees/${decodedToken.employee_id}`
+          `http://ef412a67.ngrok.io/api/v1/employees/${
+            decodedToken.employee_id
+          }`
         )
         .then(res => {
           dispatch(setCurrentEmployee(res.data.data));

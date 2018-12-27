@@ -12,10 +12,13 @@ const ADD_CASH_DROP = "employeeShift/ADD_CASH_DROP ";
 const SET_CURRENT_PAGE = "employeeShift/SET_CURRENT_PAGE ";
 const GET_INVENTORY_ITEMS = "employeeShift/GET_INVENTORY_ITEMS";
 const SET_INVENTORY_ITEM_FIELD = "employeeShift/SET_INVENTORY_ITEM_FIELD";
+const SHOW_INVENTORY = "employeeShift/SHOW_INVENTORY";
+const UNSHOW_INVENTORY = "employeeShift/UNSHOW_INVENTORY";
 
 // Initial State
 const initialState = {
   id: 0,
+  showInventory: true,
   inventoryItemField: "start_amount",
   paidOuts: [],
   checks: [],
@@ -79,6 +82,18 @@ export default (state = initialState, action = {}) => {
       return {
         ...state,
         inventoryItemField: action.payload
+      };
+    }
+    case SHOW_INVENTORY: {
+      return {
+        ...state,
+        showInventory: true
+      };
+    }
+    case UNSHOW_INVENTORY: {
+      return {
+        ...state,
+        showInventory: false
       };
     }
     default:
@@ -148,4 +163,16 @@ export const setInventoryItemField = field => {
     type: SET_INVENTORY_ITEM_FIELD,
     payload: field
   };
- };
+};
+
+export const showInventory = () => {
+  return {
+    type: SHOW_INVENTORY
+  };
+};
+
+export const unshowInventory = () => {
+  return {
+    type: UNSHOW_INVENTORY
+  };
+};

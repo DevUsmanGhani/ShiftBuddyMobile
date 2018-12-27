@@ -30,7 +30,7 @@ export class ManagerDashboard extends Component {
   componentWillMount() {
     axios
       .get(
-        `http://localhost:8000/api/v1/managers/${
+        `http://ef412a67.ngrok.io/api/v1/managers/${
           this.props.manager.managerData.manager_id
         }/employees`
       )
@@ -42,7 +42,7 @@ export class ManagerDashboard extends Component {
       .catch(err => console.log(err));
     axios
       .get(
-        `http://localhost:8000/api/v1/managers/${
+        `http://ef412a67.ngrok.io/api/v1/managers/${
           this.props.manager.managerData.manager_id
         }`
       )

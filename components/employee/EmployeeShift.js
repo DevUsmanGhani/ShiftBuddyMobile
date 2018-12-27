@@ -24,6 +24,7 @@ import PaidOuts from "./employeeShift/PaidOuts";
 import CashDrops from "./employeeShift/CashDrops";
 import Checks from "./employeeShift/Checks";
 import Notes from "./employeeShift/Notes";
+import { showInventory } from "../../modules/employeeShift";
 
 class EmployeeShift extends Component {
   state = {
@@ -46,17 +47,31 @@ class EmployeeShift extends Component {
       }
     }
   }
+
+  inventoryButton() {
+    return (
+      <Button style={style.button}>
+        <MaterialCommunityIcons
+          name="clipboard-flow"
+          size={50}
+          color="orange"
+          onPress={() => this.props.navigation.navigate("Inventory")}
+        />
+        <Text style={style.buttonText}>Inventory</Text>
+      </Button>
+    );
+  }
   render() {
     const { employee } = this.props.employee;
     const { employeeShift } = this.props;
     return (
       <Container>
-        <Header >
-          <Left style={{flex: 1}} />
-          <Body style={{ flex: 1, marginLeft: 'auto', marginRight: 'auto'}} >
+        <Header>
+          <Left style={{ flex: 1 }} />
+          <Body style={{ flex: 1, marginLeft: "auto", marginRight: "auto" }}>
             <Title>Shift Report</Title>
           </Body>
-          <Right style={{flex: 1}}/>
+          <Right style={{ flex: 1 }} />
         </Header>
         <Content
           contentContainerStyle={{
@@ -102,15 +117,7 @@ class EmployeeShift extends Component {
               justifyContent: "space-around"
             }}
           >
-            <Button style={style.button}>
-              <MaterialCommunityIcons
-                name="clipboard-flow"
-                size={50}
-                color="orange"
-                onPress={() => this.props.navigation.navigate("Inventory")}
-              />
-              <Text style={style.buttonText}>Inventory</Text>
-            </Button>
+            {this.props.employeeShift.showInventory ? this.inventoryButton() : null}
             <Button style={style.button}>
               <MaterialCommunityIcons name="coin" size={50} color="orange" />
               <Text style={style.buttonText}>Change</Text>
@@ -168,9 +175,8 @@ const mapStateToProps = state => ({
   employeeShift: state.employeeShift
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  showInventory
+};
 
 export default connect(mapStateToProps)(EmployeeShift);
-// border-width: 1;
-//   border-radius: 2;
-//   border-color: #ddd;

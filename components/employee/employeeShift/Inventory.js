@@ -25,6 +25,7 @@ import {
   setInventoryItemField,
   getInventoryItems
 } from "../../../modules/employeeShift";
+import { unshowInventory } from "../../../modules/employeeShift";
 
 export class Inventory extends Component {
   state = {
@@ -36,7 +37,7 @@ export class Inventory extends Component {
   componentDidMount() {
     axios
       .get(
-        `http://localhost:8000/api/v1/managers/${
+        `http://ef412a67.ngrok.io/api/v1/managers/${
           this.props.employee.employee.attributes.manager_id
         }/employees/${this.props.employee.employee.id}/shifts/${
           this.props.employeeShift.id
@@ -78,11 +79,15 @@ export class Inventory extends Component {
         >
           Please enter the{" "}
           {this.props.employeeShift.inventoryItemField == "start_amount" ? (
-            <Text style={{fontSize: 13, fontWeight: 'bold'}}>starting amount </Text>
+            <Text style={{ fontSize: 13, fontWeight: "bold" }}>
+              starting amount{" "}
+            </Text>
           ) : (
-            <Text style={{fontSize: 13, fontWeight: 'bold'}}>ending amount </Text>
+            <Text style={{ fontSize: 13, fontWeight: "bold" }}>
+              ending amount{" "}
+            </Text>
           )}
-           of the item below
+          of the item below
         </Text>
         <Text style={{ marginLeft: "auto", marginRight: "auto" }}>
           <Text style={{ fontWeight: "bold", fontSize: 30 }}>
@@ -245,7 +250,7 @@ export class Inventory extends Component {
     params["inventory_item"] = {};
     params["inventory_item"][field] = this.state.currentValue;
     axios
-      .put(`http://localhost:8000/api/v1/inventory_items/${itemId}`, params)
+      .put(`http://ef412a67.ngrok.io/api/v1/inventory_items/${itemId}`, params)
       .then(() => {
         this.setState({
           currentIndex: this.state.currentIndex + 1,
@@ -260,14 +265,17 @@ export class Inventory extends Component {
     params["inventory_item"] = {};
     params["inventory_item"][field] = this.state.currentValue;
     axios
-      .put(`http://localhost:8000/api/v1/inventory_items/${itemId}`, params)
+      .put(`http://ef412a67.ngrok.io/api/v1/inventory_items/${itemId}`, params)
       .then(() => {
         this.setState({
           currentIndex: 0,
           currentValue: 0
         });
-        this.props.setInventoryItemField("end_amount");
         this.props.navigation.pop();
+        if (this.props.employeeShift.inventoryItemField == "end_amount") {
+          this.props.unshowInventory();
+        }
+        this.props.setInventoryItemField("end_amount");
       });
   }
 
@@ -303,7 +311,7 @@ export class Inventory extends Component {
         </Header>
         <Content>
           {this.state.inventoryItems.length == 0
-            ? ""
+            ? this.emptyInventoryView()
             : this.inventoryView(
                 inventoryItems[this.state.currentIndex],
                 this.props.employeeShift.inventoryItemField
@@ -323,7 +331,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   getInventoryItems,
-  setInventoryItemField
+  setInventoryItemField,
+  unshowInventory
 };
 
 export default connect(

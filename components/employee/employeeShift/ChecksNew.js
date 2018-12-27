@@ -37,7 +37,7 @@ export class ChecksNew extends Component {
     const { id } = this.props.employeeShift;
     axios
       .post(
-        `http://localhost:8000/api/v1/managers/${
+        `http://ef412a67.ngrok.io/api/v1/managers/${
           employee.attributes.manager_id
         }/employees/${employee.id}/shifts/${id}/checks`,
         this.state

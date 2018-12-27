@@ -49,7 +49,7 @@ export const logoutManager = () => dispatch => {
 // Side Effects
 export const loginManager = (managerData, callback) => dispatch => {
   axios
-    .post("http://localhost:8000/api//v1/managers/authenticate", managerData)
+    .post("http://ef412a67.ngrok.io/api//v1/managers/authenticate", managerData)
     .then(res => {
       // Save to local storage
       const { auth_token } = res.data;
