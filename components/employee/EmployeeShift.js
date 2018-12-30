@@ -118,7 +118,9 @@ class EmployeeShift extends Component {
             }}
           >
             {this.props.employeeShift.showInventory ? this.inventoryButton() : null}
-            <Button style={style.button}>
+            <Button style={style.button}
+                onPress={() => this.props.navigation.navigate('Change')}
+              >
               <MaterialCommunityIcons name="coin" size={50} color="orange" />
               <Text style={style.buttonText}>Change</Text>
             </Button>

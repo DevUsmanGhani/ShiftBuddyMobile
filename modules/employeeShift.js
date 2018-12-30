@@ -14,12 +14,31 @@ const GET_INVENTORY_ITEMS = "employeeShift/GET_INVENTORY_ITEMS";
 const SET_INVENTORY_ITEM_FIELD = "employeeShift/SET_INVENTORY_ITEM_FIELD";
 const SHOW_INVENTORY = "employeeShift/SHOW_INVENTORY";
 const UNSHOW_INVENTORY = "employeeShift/UNSHOW_INVENTORY";
+const SET_CHANGE_FIELDS = "employeeShift/SET_CHANGE_FIELDS"
 
 // Initial State
 const initialState = {
   id: 0,
   showInventory: true,
   inventoryItemField: "start_amount",
+  changeFields: {
+    startPennies: 0,
+    startNickels: 0,
+    startDimes: 0,
+    startQuarters: 0,
+    startOnes: 0,
+    startFives: 0,
+    startTens: 0,
+    startTwenties: 0,
+    endPennies: 0,
+    endNickels: 0,
+    endDimes: 0,
+    endQuarters: 0,
+    endOnes: 0,
+    endFives: 0,
+    endTens: 0,
+    endTwenties: 0
+  },
   paidOuts: [],
   checks: [],
   cashDrops: [],
@@ -95,6 +114,15 @@ export default (state = initialState, action = {}) => {
         ...state,
         showInventory: false
       };
+    }
+    case SET_CHANGE_FIELDS: {
+      return {
+        ...state,
+        changeFields: {
+          ...state.changeFields,
+          changes
+        }
+      }
     }
     default:
       return state;
@@ -176,3 +204,10 @@ export const unshowInventory = () => {
     type: UNSHOW_INVENTORY
   };
 };
+
+export const setChangeFields = changes => {
+  return {
+    type: SET_CHANGE_FIELDS,
+    payload: changes
+  }
+}
