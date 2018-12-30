@@ -15,7 +15,8 @@ import {
   View,
   Form,
   Item,
-  Input
+  Input,
+  Picker
 } from "native-base";
 import { StyleSheet, TextInput } from "react-native";
 import { connect } from "react-redux";
@@ -24,7 +25,32 @@ import axios from "axios";
 import { setChangeFields } from "../../../modules/employeeShift";
 
 export class Change extends Component {
+  state = {
+    changeFields: this.props.employeeShift.changeFields
+  };
+
+  onSubmit() {
+    axios
+      .put(
+        `http://localhost:8000/api/v1/shifts/${
+          this.props.employeeShift.id
+        }/change_sheet`,
+        { change_sheet: this.props.employeeShift.changeFields }
+      )
+      .then(this.props.navigation.navigate("EmployeeShift"));
+  }
+
+  onValueChange(prefix, changeType, value) {
+    changeField = prefix + changeType.toLowerCase();
+    this.props.setChangeFields(changeField, value);
+  }
+
   changeTypeInput(changeType) {
+    const oneToTwelve = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+    const start = "start_" + changeType.toLowerCase();
+    const end = "end_" + changeType.toLowerCase();
+    const currentStartValue = this.props.employeeShift.changeFields[start];
+    const currentEndValue = this.props.employeeShift.changeFields[end];
     return (
       <View
         style={{
@@ -36,24 +62,59 @@ export class Change extends Component {
         }}
       >
         <Button rounded warning style={{ flexBasis: 50 }}>
-          <Text style={{ marginLeft: "auto", marginRight: "auto" }}>
-            {this.props.employeeShift.changeFields.startPennies}
-          </Text>
+          <Picker
+            note
+            mode="dropdown"
+            style={{ width: 120 }}
+            onValueChange={this.onValueChange.bind(this, "start_", changeType)}
+          >
+            {oneToTwelve.map(num => (
+              <Picker.Item label={num} value={num} />
+            ))}
+          </Picker>
         </Button>
+        <Text
+          style={{
+            position: "relative",
+            left: -55,
+            color: "white",
+            zIndex: 999,
+            fontWeight: "bold"
+          }}
+        >
+          {currentStartValue}
+        </Text>
         <Text style={{ flexBasis: 100, textAlign: "center" }}>
           {changeType}
         </Text>
+        <Text
+          style={{
+            position: "relative",
+            right: -55,
+            color: "white",
+            zIndex: 999,
+            fontWeight: "bold"
+          }}
+        >
+          {currentEndValue}
+        </Text>
         <Button rounded style={{ flexBasis: 50 }}>
-          <Text style={{ marginLeft: "auto", marginRight: "auto" }}>
-            {this.props.employeeShift.changeFields.startPennies}
-          </Text>
+          <Picker
+            note
+            mode="dropdown"
+            style={{ width: 120 }}
+            onValueChange={this.onValueChange.bind(this, "end_", changeType)}
+          >
+            {oneToTwelve.map(num => (
+              <Picker.Item label={num} value={num} />
+            ))}
+          </Picker>
         </Button>
       </View>
     );
   }
 
   render() {
-    console.log(this.state);
     const changeTypes = [
       "Pennies",
       "Nickels",
@@ -79,7 +140,7 @@ export class Change extends Component {
             style={{
               flex: "1",
               flexDirection: "row",
-              justifyContent: "space-evenly",
+              justifyContent: "space-around",
               marginBottom: 25
             }}
           >
@@ -89,10 +150,21 @@ export class Change extends Component {
           </View>
           {changeTypes.map(changeType => this.changeTypeInput(changeType))}
           <Button
-            onPress={() => this.props.navigation.navigate("EmployeeShift")}
-            style={{marginLeft: 'auto', marginRight: 'auto', marginTop: 20}}
+            transparent
+            warning
+            onPress={() => this.onSubmit()}
+            style={{
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              width: 200,
+              justifyContent: "center",
+              borderWidth: 3,
+              borderColor: "orange",
+              borderStyle: "solid",
+              marginTop: 20
+            }}
           >
-            <Text>Save</Text>
+            <Text>Done</Text>
           </Button>
         </Content>
       </Container>
@@ -102,9 +174,11 @@ export class Change extends Component {
 
 const styles = StyleSheet.create({});
 
-const mapStateToProps = state => ({
-  employeeShift: state.employeeShift
-});
+const mapStateToProps = state => {
+  return {
+    employeeShift: state.employeeShift
+  };
+};
 
 const mapDispatchToProps = {
   setChangeFields

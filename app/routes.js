@@ -20,7 +20,7 @@ export default createStackNavigator(
     Change: { screen: Change }
   },
   {
-  initialRouteName: 'Change',
+  initialRouteName: 'EmployeeShift',
   headerMode: 'none',
   }
 );

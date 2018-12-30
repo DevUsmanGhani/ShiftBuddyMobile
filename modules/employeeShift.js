@@ -14,7 +14,7 @@ const GET_INVENTORY_ITEMS = "employeeShift/GET_INVENTORY_ITEMS";
 const SET_INVENTORY_ITEM_FIELD = "employeeShift/SET_INVENTORY_ITEM_FIELD";
 const SHOW_INVENTORY = "employeeShift/SHOW_INVENTORY";
 const UNSHOW_INVENTORY = "employeeShift/UNSHOW_INVENTORY";
-const SET_CHANGE_FIELDS = "employeeShift/SET_CHANGE_FIELDS"
+const SET_CHANGE_FIELDS = "employeeShift/SET_CHANGE_FIELDS";
 
 // Initial State
 const initialState = {
@@ -22,22 +22,22 @@ const initialState = {
   showInventory: true,
   inventoryItemField: "start_amount",
   changeFields: {
-    startPennies: 0,
-    startNickels: 0,
-    startDimes: 0,
-    startQuarters: 0,
-    startOnes: 0,
-    startFives: 0,
-    startTens: 0,
-    startTwenties: 0,
-    endPennies: 0,
-    endNickels: 0,
-    endDimes: 0,
-    endQuarters: 0,
-    endOnes: 0,
-    endFives: 0,
-    endTens: 0,
-    endTwenties: 0
+    start_pennies: 0,
+    start_nickels: 0,
+    start_dimes: 0,
+    start_quarters: 0,
+    start_ones: 0,
+    start_fives: 0,
+    start_tens: 0,
+    start_twenties: 0,
+    end_pennies: 0,
+    end_nickels: 0,
+    end_dimes: 0,
+    end_quarters: 0,
+    end_ones: 0,
+    end_fives: 0,
+    end_tens: 0,
+    end_twenties: 0
   },
   paidOuts: [],
   checks: [],
@@ -120,9 +120,9 @@ export default (state = initialState, action = {}) => {
         ...state,
         changeFields: {
           ...state.changeFields,
-          changes
+          [action.payload.field]: action.payload.value
         }
-      }
+      };
     }
     default:
       return state;
@@ -205,9 +205,12 @@ export const unshowInventory = () => {
   };
 };
 
-export const setChangeFields = changes => {
+export const setChangeFields = (field, value) => {
   return {
     type: SET_CHANGE_FIELDS,
-    payload: changes
-  }
-}
+    payload: {
+      field: field,
+      value: value
+    }
+  };
+};

@@ -62,7 +62,8 @@ export class NotesNew extends Component {
           onChangeText={title => this.setState({ title })}
           value={this.state.title}
         />
-        <Text style={styles.label}>Title</Text>
+
+          <Text style={styles.label}>Title<Text style={{color: 'grey', fontStyle: 'italic', fontSize: 12}}> (Optional)</Text></Text>
 
         <TextInput
           style={{
