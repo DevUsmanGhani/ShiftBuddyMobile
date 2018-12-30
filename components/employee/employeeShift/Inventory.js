@@ -37,7 +37,7 @@ export class Inventory extends Component {
   componentDidMount() {
     axios
       .get(
-        `http://ef412a67.ngrok.io/api/v1/managers/${
+        `http://localhost:8000/api/v1/managers/${
           this.props.employee.employee.attributes.manager_id
         }/employees/${this.props.employee.employee.id}/shifts/${
           this.props.employeeShift.id
@@ -250,7 +250,7 @@ export class Inventory extends Component {
     params["inventory_item"] = {};
     params["inventory_item"][field] = this.state.currentValue;
     axios
-      .put(`http://ef412a67.ngrok.io/api/v1/inventory_items/${itemId}`, params)
+      .put(`http://localhost:8000/api/v1/inventory_items/${itemId}`, params)
       .then(() => {
         this.setState({
           currentIndex: this.state.currentIndex + 1,
@@ -265,7 +265,7 @@ export class Inventory extends Component {
     params["inventory_item"] = {};
     params["inventory_item"][field] = this.state.currentValue;
     axios
-      .put(`http://ef412a67.ngrok.io/api/v1/inventory_items/${itemId}`, params)
+      .put(`http://localhost:8000/api/v1/inventory_items/${itemId}`, params)
       .then(() => {
         this.setState({
           currentIndex: 0,

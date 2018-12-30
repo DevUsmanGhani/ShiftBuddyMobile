@@ -18,7 +18,11 @@ import {
 import BackButton from "../common/BackButton";
 import { connect } from "react-redux";
 import { FontAwesome } from "@expo/vector-icons";
-import { setCurrentShift, showInventory, setInventoryItemField } from "../../modules/employeeShift";
+import {
+  setCurrentShift,
+  showInventory,
+  setInventoryItemField
+} from "../../modules/employeeShift";
 import axios from "axios";
 import { Alert } from "react-native";
 
@@ -47,14 +51,14 @@ class EmployeeDashboard extends Component {
   onShiftCreate() {
     axios
       .post(
-        `http://ef412a67.ngrok.io/api/v1/managers/${
+        `http://localhost:8000/api/v1/managers/${
           this.props.employee.employee.attributes.manager_id
         }/employees/${this.props.employee.employee.id}}/shifts`
       )
       .then(res => {
         this.props.setCurrentShift(res.data.id);
         this.props.showInventory();
-        this.props.setInventoryItemField('start_amount')
+        this.props.setInventoryItemField("start_amount");
       })
       .then(this.props.navigation.navigate("EmployeeShift"))
       .catch(err => console.log(err));
