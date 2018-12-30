@@ -12,6 +12,7 @@ import {
   Body,
   Icon,
   Text,
+  View,
   Card,
   CardItem
 } from "native-base";
@@ -19,43 +20,35 @@ import { connect } from "react-redux";
 import BackButton from "../common/BackButton";
 import axios from "axios";
 import { FontAwesome } from "@expo/vector-icons";
+import { StyleSheet } from "react-native";
+import Home from "./Home";
+import Shifts from './Shifts';
+import Employees from './Employees';
+import Settings from './Settings';
 
 export class ManagerDashboard extends Component {
   state = {
-    employees: [],
-    manager: {},
-    shifts: []
+    currentPage: "Home"
   };
 
-  componentWillMount() {
-    axios
-      .get(
-        `http://localhost:8000/api/v1/managers/${
-          this.props.manager.managerData.manager_id
-        }/employees`
-      )
-      .then(res => {
-        this.setState({
-          employees: res.data
-        });
-      })
-      .catch(err => console.log(err));
-    axios
-      .get(
-        `http://localhost:8000/api/v1/managers/${
-          this.props.manager.managerData.manager_id
-        }`
-      )
-      .then(res => {
-        this.setState({
-          manager: res.data
-        });
-      })
-      .catch(err => console.log(err));
+  currentPage() {
+    switch (this.state.currentPage) {
+      case "Home": {
+        return <Home />;
+      }
+      case "Shifts": {
+        return <Shifts />;
+      }
+      case "Employees": {
+        return <Employees />;
+      }
+      case "Settings": {
+        return <Settings />;
+      }
+    }
   }
 
   render() {
-    const { manager, employees } = this.state;
     return (
       <Container>
         <Header>
@@ -63,58 +56,66 @@ export class ManagerDashboard extends Component {
           <Body>
             <Title>Dashboard</Title>
           </Body>
-          <Right />>
+          <Right>
+              <FontAwesome onPress={() => this.setState({currentPage: 'Settings'})} style={{marginRight: 25}} name="cog" size={25} color="orange" />
+          </Right>
         </Header>
         <Content style={{ backgroundColor: "seashell" }}>
-          <Card>
-            <CardItem>
-              <Body style={{ alignItems: "center" }}>
-                <Text style={{ fontWeight: "bold", marginBottom: 10 }}>
-                  Welcome {manager.name}
-                </Text>
-                <FontAwesome name="user-circle" size={128} color="orange" />
-              </Body>
-            </CardItem>
-          </Card>
-          <Card>
-            <CardItem
+          <View
+            style={{
+              flex: 1,
+            }}
+          >
+            <View
               style={{
-                fontWeight: "bold",
-                borderBottomColor: "black",
-                borderBottomWidth: 1
+                flex: 1,
+                backgroundColor: "red",
+                backgroundColor: "white",
+                marginTop: 10,
+                shadowOpacity: 0.75,
+                marginLeft: 5,
+                marginRight: 5,
+                shadowRadius: 5,
+                shadowColor: "grey",
+                shadowOffset: { height: 0, width: 0 },
+                borderColor: "#ddd",
+                borderRadius: 2,
+                borderWidth: 2
               }}
             >
-              <Text>Employees</Text>
-            </CardItem>
-            {employees.slice(0, 5).map(employee => {
-              name = employee.name;
-              return (
-                <CardItem
-                  style={{
-                    borderBottomColor: "grey",
-                    borderBottomWidth: 0.3
-                  }}
-                >
-                  <FontAwesome name="user-circle-o" size={32} color="orange" />
-                  <Text style={{ marginLeft: 5, color: "grey" }}>{name}</Text>
-                  <Right style={{ position: "absolute", right: 15 }}>
-                    <Icon name="arrow-forward" />
-                  </Right>
-                </CardItem>
-              );
-            })}
-            <CardItem>
-              <Text style={{ color: "orange" }}>View All</Text>
-              <Right style={{ position: "absolute", right: 15 }}>
-                <Icon name="arrow-forward" />
-              </Right>
-            </CardItem>
-          </Card>
+              {this.currentPage()}
+            </View>
+            <View style={{flex: 1, flexDirection: "row"}}>
+              <Button onPress={() => this.setState({currentPage: 'Home'})} style={style.button}>
+                <FontAwesome name="home" size={50} color="orange" />
+                <Text style={{ color: "charcoal" }}>Home</Text>
+              </Button>
+
+              <Button onPress={() => this.setState({currentPage: 'Shifts'})} style={style.button}>
+                <FontAwesome name="file" size={50} color="orange" />
+                <Text style={{ color: "charcoal" }}>Shifts</Text>
+              </Button>
+
+              <Button onPress={() => this.setState({currentPage: 'Employees'})} style={style.button}>
+                <FontAwesome name="user" size={50} color="orange" />
+                <Text style={{ color: "charcoal" }}>Employees</Text>
+              </Button>
+            </View>
+
+          </View>
         </Content>
       </Container>
     );
   }
 }
+
+const style = StyleSheet.create({
+  button: {
+    width: 120,
+    height: 100,
+    backgroundColor: "seashell"
+  }
+});
 
 const mapStateToProps = state => ({
   manager: state.manager

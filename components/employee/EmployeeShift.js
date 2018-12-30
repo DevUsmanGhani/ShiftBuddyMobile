@@ -108,6 +108,7 @@ class EmployeeShift extends Component {
           }}
         >
           <View style={style.view}>{this.currentPage()}</View>
+
           <View
             style={{
               marginTop: 20,
