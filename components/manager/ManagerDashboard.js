@@ -60,16 +60,10 @@ export class ManagerDashboard extends Component {
               <FontAwesome onPress={() => this.setState({currentPage: 'Settings'})} style={{marginRight: 25}} name="cog" size={25} color="orange" />
           </Right>
         </Header>
-        <Content style={{ backgroundColor: "seashell" }}>
-          <View
-            style={{
-              flex: 1,
-            }}
-          >
+        <Content contentContainerStyle={{ backgroundColor: "seashell", flex: 1 }}>
             <View
               style={{
-                flex: 1,
-                backgroundColor: "red",
+                flex: 8,
                 backgroundColor: "white",
                 marginTop: 10,
                 shadowOpacity: 0.75,
@@ -87,22 +81,17 @@ export class ManagerDashboard extends Component {
             </View>
             <View style={{flex: 1, flexDirection: "row"}}>
               <Button onPress={() => this.setState({currentPage: 'Home'})} style={style.button}>
-                <FontAwesome name="home" size={50} color="orange" />
-                <Text style={{ color: "charcoal" }}>Home</Text>
+                <FontAwesome name="list-alt" size={50} color="orange" />
               </Button>
 
               <Button onPress={() => this.setState({currentPage: 'Shifts'})} style={style.button}>
-                <FontAwesome name="file" size={50} color="orange" />
-                <Text style={{ color: "charcoal" }}>Shifts</Text>
+                <FontAwesome name="file" size={43} color="orange" />
               </Button>
 
               <Button onPress={() => this.setState({currentPage: 'Employees'})} style={style.button}>
-                <FontAwesome name="user" size={50} color="orange" />
-                <Text style={{ color: "charcoal" }}>Employees</Text>
+                <FontAwesome name="users" size={43} color="orange" />
               </Button>
             </View>
-
-          </View>
         </Content>
       </Container>
     );
@@ -113,7 +102,8 @@ const style = StyleSheet.create({
   button: {
     width: 120,
     height: 100,
-    backgroundColor: "seashell"
+    backgroundColor: "seashell",
+    flexDirection: 'column',
   }
 });
 
