@@ -17,7 +17,7 @@ import {
   CardItem
 } from "native-base";
 import BackButton from "../common/BackButton";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Alert } from "react-native";
 import { connect } from "react-redux";
 import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
 import PaidOuts from "./employeeShift/PaidOuts";
@@ -61,6 +61,18 @@ class EmployeeShift extends Component {
       </Button>
     );
   }
+
+  handleEndShift() {
+    Alert.alert("End Shift", "Are you sure you would like to end your shift?", [
+      {
+        text: "Cancel",
+        onPress: () => console.log("Cancel Pressed"),
+        style: "cancel"
+      },
+      { text: "End Shift", onPress: () => this.props.navigation.pop() }
+    ]);
+  }
+
   render() {
     const { employee } = this.props.employee;
     const { employeeShift } = this.props;
@@ -71,7 +83,23 @@ class EmployeeShift extends Component {
           <Body style={{ flex: 1, marginLeft: "auto", marginRight: "auto" }}>
             <Title>Shift Report</Title>
           </Body>
-          <Right style={{ flex: 1 }} />
+          <Right style={{ flex: 1 }}>
+            <Text
+              onPress={() => this.handleEndShift()}
+              style={{
+                color: "white",
+                fontSize: 12,
+                backgroundColor: "red",
+                padding: 5,
+                fontWeight: "bold",
+                borderRadius: 8,
+                overflow: "hidden"
+              }}
+            >
+              End Shift{"  "}
+              <FontAwesome name="send-o" />
+            </Text>
+          </Right>
         </Header>
         <Content
           contentContainerStyle={{
@@ -117,10 +145,13 @@ class EmployeeShift extends Component {
               justifyContent: "space-around"
             }}
           >
-            {this.props.employeeShift.showInventory ? this.inventoryButton() : null}
-            <Button style={style.button}
-                onPress={() => this.props.navigation.navigate('Change')}
-              >
+            {this.props.employeeShift.showInventory
+              ? this.inventoryButton()
+              : null}
+            <Button
+              style={style.button}
+              onPress={() => this.props.navigation.navigate("Change")}
+            >
               <MaterialCommunityIcons name="coin" size={50} color="orange" />
               <Text style={style.buttonText}>Change</Text>
             </Button>
