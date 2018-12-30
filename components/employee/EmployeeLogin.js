@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, Form, Item, Input } from 'native-base';
+import { Container, View, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, Form, Item, Input } from 'native-base';
 import BackButton from '../common/BackButton';
 import { loginEmployee } from '../../modules/employee';
 import { connect } from 'react-redux';
@@ -51,7 +51,13 @@ class EmployeeLogin extends Component {
           <Right />
         </Header>
         <Content  contentContainerStyle={{ flex: 1, backgroundColor: 'seashell' }}>
+        <View style={{marginTop: 25, marginBottom: 25, marginLeft: 'auto', marginRight: 'auto'}}>
+          <Text style={{fontWeight: 'bold', fontSize: 24}}>
+            Employee Login
+          </Text>
+        </View>
         <Form style={{backgroundColor: 'white'}}>
+
             <Item>
               <Input
                 autofocus

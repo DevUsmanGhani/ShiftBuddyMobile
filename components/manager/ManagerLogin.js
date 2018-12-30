@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loginManager } from '../../modules/manager';
-import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, Form, Item, Input, Spinner } from 'native-base';
+import { Container, View, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, Form, Item, Input, Spinner } from 'native-base';
 import BackButton from '../common/BackButton';
 
 export class ManagerLogin extends Component {
@@ -54,6 +54,11 @@ export class ManagerLogin extends Component {
           <Right />>
         </Header>
         <Content contentContainerStyle={{ flex: 1, backgroundColor: 'seashell' }}>
+        <View style={{marginTop: 25, marginBottom: 25}}>
+          <Text style={{fontWeight: 'bold', fontSize: 24, marginLeft: 'auto', marginRight: 'auto'}}>
+            Manager Login
+          </Text>
+        </View>
           <Form style={{backgroundColor: 'white'}}>
             <Item>
               <Input
