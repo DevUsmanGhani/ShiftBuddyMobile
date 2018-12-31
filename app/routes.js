@@ -8,6 +8,7 @@ import EmployeeShift from "../components/employee/EmployeeShift";
 import Inventory from "../components/employee/employeeShift/Inventory";
 import Change from "../components/employee/employeeShift/Change";
 import TrackedItems from "../components/manager/settings/TrackedItems";
+import ManagerShift from "../components/manager/ManagerShift";
 
 export default createStackNavigator(
   {
@@ -19,7 +20,8 @@ export default createStackNavigator(
     EmployeeShift: { screen: EmployeeShift },
     Inventory: { screen: Inventory },
     Change: { screen: Change },
-    TrackedItems: { screen: TrackedItems }
+    TrackedItems: { screen: TrackedItems },
+    ManagerShift: { screen: ManagerShift }
   },
   {
     initialRouteName: "Home",
