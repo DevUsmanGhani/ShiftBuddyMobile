@@ -43,7 +43,7 @@ export class ManagerDashboard extends Component {
         return <Employees />;
       }
       case "Settings": {
-        return <Settings />;
+        return <Settings navigate={this.props.navigation.navigate} />;
       }
     }
   }

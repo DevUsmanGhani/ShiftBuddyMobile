@@ -5,8 +5,8 @@ export default class Home extends Component {
   render() {
     return (
       <View>
-        <Text>
-          General info...
+        <Text style={{fontWeight: 'bold', fontSize: '24', marginLeft: 'auto', marginRight: 'auto'}}>
+          Activity Log
         </Text>
       </View>
     );

@@ -1,12 +1,13 @@
-import { createStackNavigator } from 'react-navigation';
-import HomeScreen from '../components/HomeScreen';
-import EmployeeLogin from '../components/employee/EmployeeLogin';
-import ManagerLogin from '../components/manager/ManagerLogin';
-import ManagerDashboard from '../components/manager/ManagerDashboard';
-import EmployeeDashboard from '../components/employee/EmployeeDashboard';
-import EmployeeShift from '../components/employee/EmployeeShift';
-import Inventory from '../components/employee/employeeShift/Inventory';
-import Change from '../components/employee/employeeShift/Change';
+import { createStackNavigator } from "react-navigation";
+import HomeScreen from "../components/HomeScreen";
+import EmployeeLogin from "../components/employee/EmployeeLogin";
+import ManagerLogin from "../components/manager/ManagerLogin";
+import ManagerDashboard from "../components/manager/ManagerDashboard";
+import EmployeeDashboard from "../components/employee/EmployeeDashboard";
+import EmployeeShift from "../components/employee/EmployeeShift";
+import Inventory from "../components/employee/employeeShift/Inventory";
+import Change from "../components/employee/employeeShift/Change";
+import TrackedItems from "../components/manager/settings/TrackedItems";
 
 export default createStackNavigator(
   {
@@ -17,10 +18,11 @@ export default createStackNavigator(
     EmployeeDashboard: { screen: EmployeeDashboard },
     EmployeeShift: { screen: EmployeeShift },
     Inventory: { screen: Inventory },
-    Change: { screen: Change }
+    Change: { screen: Change },
+    TrackedItems: { screen: TrackedItems }
   },
   {
-  initialRouteName: 'ManagerDashboard',
-  headerMode: 'none',
+    initialRouteName: "Home",
+    headerMode: "none"
   }
 );
