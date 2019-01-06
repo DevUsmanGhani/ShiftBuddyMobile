@@ -21,22 +21,6 @@ export default (state = initialState, action) => {
   }
 };
 
-// Side Effects
-export const setShift = (id, callback) => dispatch => {
-  axios
-    .get(`http://localhost:8000/api/v1/shifts/${id}`)
-    .then(res => {
-      dispatch({
-        type: SET_SHIFT,
-        payload: res.data.included
-      });
-    })
-    .then(callback())
-    .catch(err => {
-      console.log(err);
-    });
-};
-
 export const clearShift = () => {
   return({
     type: CLEAR_SHIFT,

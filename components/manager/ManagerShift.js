@@ -20,57 +20,17 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { FontAwesome } from "@expo/vector-icons";
 import BackButton from "../common/BackButton";
+import PaidOuts from "./ManagerShift/PaidOuts";
+import Checks from "./ManagerShift/Checks";
+import CashDrops from "./ManagerShift/CashDrops";
+import InventoryItems from "./ManagerShift/InventoryItems";
+import Notes from "./ManagerShift/Notes";
+import Change from "./ManagerShift/Change";
 
 export class ManagerShift extends Component {
-  state = {
-    changeSheet: "",
-    inventoryItems: [],
-    paidOuts: [],
-    cashDrops: [],
-    notes: [],
-    checks: []
-  };
-
-  updateTheState() {
-    let includes = this.props.managerShift.currentShift;
-    includes.map(include => {
-      include.map(item => {
-        switch (item.type) {
-          case "change_sheet": {
-            this.setState({ changeSheet: item });
-            break;
-          }
-          case "inventory_item": {
-            this.setState({
-              inventoryItems: [...this.state.inventoryItems, item]
-            });
-            break;
-          }
-          case "paid_out": {
-            this.setState({ paidOuts: [...this.state.paidOuts, item] });
-            break;
-          }
-          case "cash_drop": {
-            this.setState({ cashDrops: [...this.state.cashDrops, item] });
-            break;
-          }
-          case "check": {
-            this.setState({ checks: [...this.state.checks, item] });
-            break;
-          }
-          case "note": {
-            this.setState({ notes: [...this.state.notes, item] });
-            break;
-          }
-        }
-      });
-    });
-  }
   render() {
-    if (this.props.managerShift.currentShift[0]) {
-      this.updateTheState();
-    }
-    console.log(this.state)
+    const { navigation } = this.props;
+    const shiftId = navigation.getParam("shiftId");
     return (
       <Container>
         <Header>
@@ -80,16 +40,13 @@ export class ManagerShift extends Component {
           </Body>
           <Right />
         </Header>
-        <Content
-          contentContainerStyle={{ backgroundColor: "seashell", flex: 1 }}
-        >
-          {this.state.inventoryItems.map(item => {
-            return (
-              <View>
-                <Text>{item.attributes.name}</Text>
-              </View>
-            );
-          })}
+        <Content contentContainerStyle={{ backgroundColor: "seashell" }}>
+          <Notes shiftId={shiftId} />
+          <CashDrops shiftId={shiftId} />
+          <PaidOuts shiftId={shiftId} />
+          <Checks shiftId={shiftId} />
+          <Change shiftId={shiftId} />
+          <InventoryItems shiftId={shiftId} />
         </Content>
       </Container>
     );

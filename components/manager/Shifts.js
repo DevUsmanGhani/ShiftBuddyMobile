@@ -19,7 +19,6 @@ import {
 import axios from "axios";
 import { connect } from "react-redux";
 import { FontAwesome } from "@expo/vector-icons";
-import { setShift } from "../../modules/managerShift";
 
 export class Shifts extends Component {
   state = {
@@ -43,8 +42,12 @@ export class Shifts extends Component {
     return this.state.shifts.map((shift, index) => {
       return (
         <Button
-        transparent
-          onPress={() => this.props.setShift(shift.id, () => this.props.navigate('ManagerShift'))}
+          transparent
+          onPress={() =>
+            this.props.navigate("ManagerShift", {
+              shiftId: shift.id
+            })
+          }
           style={{
             flexDirection: "row",
             justifyContent: "center",
@@ -54,7 +57,7 @@ export class Shifts extends Component {
             borderColor: "grey"
           }}
         >
-          <Text style={{ marginLeft: 10, color: 'grey'}}>
+          <Text style={{ marginLeft: 10, color: "grey" }}>
             {shift.attributes.date} - {shift.attributes.employee_name}
           </Text>
           <FontAwesome
@@ -111,7 +114,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  setShift
 };
 
 export default connect(
