@@ -154,8 +154,8 @@ export class Change extends Component {
             warning
             onPress={() => this.onSubmit()}
             style={{
-              marginLeft: 'auto',
-              marginRight: 'auto',
+              marginLeft: "auto",
+              marginRight: "auto",
               width: 200,
               justifyContent: "center",
               borderWidth: 3,

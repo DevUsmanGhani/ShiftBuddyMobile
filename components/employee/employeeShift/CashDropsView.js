@@ -20,7 +20,6 @@ import {
 import { StyleSheet, TextInput, Alert } from "react-native";
 import { connect } from "react-redux";
 
-
 export class CashDropsView extends Component {
   render() {
     const { cashDrops } = this.props.employeeShift;
@@ -39,17 +38,16 @@ export class CashDropsView extends Component {
             flex: 1,
             flexDirection: "row",
             justifyContent: "flex-start",
-            flexWrap: 'wrap',
+            flexWrap: "wrap",
             marginTop: 20
           }}
         >
           {cashDrops.map(cashDrop => {
             return (
-              <View style={{ flexWrap: "wrap", alignSelf: "flex-start", margin: 1 }}
+              <View
+                style={{ flexWrap: "wrap", alignSelf: "flex-start", margin: 1 }}
               >
-                <Button
-                  light
-                >
+                <Button light>
                   <Text>
                     {cashDrop.number}: ${cashDrop.amount}
                   </Text>

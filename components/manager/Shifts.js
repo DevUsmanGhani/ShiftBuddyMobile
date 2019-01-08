@@ -54,7 +54,8 @@ export class Shifts extends Component {
             alignItems: "center",
             borderBottomWidth: 1,
             borderTopWidth: index == 0 ? 1 : 0,
-            borderColor: "grey"
+            borderColor: "grey",
+            width: '100%'
           }}
         >
           <Text style={{ marginLeft: 10, color: "grey" }}>

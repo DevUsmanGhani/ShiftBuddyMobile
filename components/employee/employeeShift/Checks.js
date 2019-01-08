@@ -20,7 +20,7 @@ import {
 import { StyleSheet, TextInput } from "react-native";
 import { connect } from "react-redux";
 import ChecksNew from "./ChecksNew";
-import ChecksView from './ChecksView'
+import ChecksView from "./ChecksView";
 
 export class Checks extends Component {
   constructor(props) {
@@ -30,19 +30,27 @@ export class Checks extends Component {
     };
   }
   render() {
-    const pageNew = this.state.currentPage == 'new'
+    const pageNew = this.state.currentPage == "new";
     return (
       <Body style={styles.container}>
         <Text style={styles.header}>Checks</Text>
         <View style={styles.buttonContainer}>
-          <Button onPress={() => this.setState({currentPage: 'view'})}  light={pageNew} style={styles.button}>
+          <Button
+            onPress={() => this.setState({ currentPage: "view" })}
+            light={pageNew}
+            style={styles.button}
+          >
             <Text>All</Text>
           </Button>
-          <Button style={styles.button} onPress={() => this.setState({currentPage: 'new'})} light={!pageNew}>
+          <Button
+            style={styles.button}
+            onPress={() => this.setState({ currentPage: "new" })}
+            light={!pageNew}
+          >
             <Text>New</Text>
           </Button>
         </View>
-        {pageNew ? <ChecksNew /> : <ChecksView /> }
+        {pageNew ? <ChecksNew /> : <ChecksView />}
       </Body>
     );
   }
