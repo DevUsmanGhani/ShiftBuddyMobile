@@ -63,7 +63,13 @@ export class NotesNew extends Component {
           value={this.state.title}
         />
 
-          <Text style={styles.label}>Title<Text style={{color: 'grey', fontStyle: 'italic', fontSize: 12}}> (Optional)</Text></Text>
+        <Text style={styles.label}>
+          Title
+          <Text style={{ color: "grey", fontStyle: "italic", fontSize: 12 }}>
+            {" "}
+            (Optional)
+          </Text>
+        </Text>
 
         <TextInput
           style={{

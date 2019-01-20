@@ -66,7 +66,7 @@ export default class InventoryItems extends Component {
                 flexDirection: "row",
                 justifyContent: "space-evenly",
                 borderBottomWidth: 1,
-                borderColor: 'gray',
+                borderColor: "gray",
                 marginBottom: 5,
                 marginTop: 5
               }}
@@ -95,14 +95,18 @@ export default class InventoryItems extends Component {
   emptyView() {
     return (
       <View>
-        <Text style={{textAlign: 'center', fontSize: 12, fontStyle: 'italic'}}>No Inventory Items</Text>
+        <Text
+          style={{ textAlign: "center", fontSize: 12, fontStyle: "italic" }}
+        >
+          No Inventory Items
+        </Text>
       </View>
     );
   }
 
   render() {
     return (
-      <View style={{marginBottom: 25}}>
+      <View style={{ marginBottom: 25 }}>
         <View>
           <Text
             style={{
@@ -111,9 +115,9 @@ export default class InventoryItems extends Component {
               marginLeft: "auto",
               marginRight: "auto",
               marginBottom: 25,
-              textAlign: 'center',
-              width: '100%',
-              backgroundColor: 'white'
+              textAlign: "center",
+              width: "100%",
+              backgroundColor: "white"
             }}
           >
             Inventory Items

@@ -55,7 +55,7 @@ export class Shifts extends Component {
             borderBottomWidth: 1,
             borderTopWidth: index == 0 ? 1 : 0,
             borderColor: "grey",
-            width: '100%'
+            width: "100%"
           }}
         >
           <Text style={{ marginLeft: 10, color: "grey" }}>
@@ -114,8 +114,7 @@ const mapStateToProps = state => ({
   manager: state.manager
 });
 
-const mapDispatchToProps = {
-};
+const mapDispatchToProps = {};
 
 export default connect(
   mapStateToProps,

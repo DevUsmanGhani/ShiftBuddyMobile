@@ -44,7 +44,7 @@ export default class CashDrops extends Component {
             flex: 1,
             flexDirection: "row",
             alignItems: "center",
-            justifyContent: "center",
+            justifyContent: "center"
           }}
         >
           <Entypo name="triangle-right" color="orange" size="20" />
@@ -58,7 +58,11 @@ export default class CashDrops extends Component {
   emptyView() {
     return (
       <View>
-        <Text style={{textAlign: 'center', fontSize: 12, fontStyle: 'italic'}}>No Cash Drops</Text>
+        <Text
+          style={{ textAlign: "center", fontSize: 12, fontStyle: "italic" }}
+        >
+          No Cash Drops
+        </Text>
       </View>
     );
   }

@@ -40,16 +40,14 @@ export class Shifts extends Component {
   paidOutsView() {
     return this.state.paidOuts.map(paidOut => {
       return (
-        <View style={{flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-        <View style={{flex: 3}}>
-
-        </View>
-        <View style={{flex: 7, flexDirection: 'row'}}>
-          <Entypo name="triangle-right" color="orange" size="20"/>
-          <Text>
-            {paidOut.company}: ${paidOut.amount}
-          </Text>
-        </View>
+        <View style={{ flex: 1, flexDirection: "row", alignItems: "center" }}>
+          <View style={{ flex: 3 }} />
+          <View style={{ flex: 7, flexDirection: "row" }}>
+            <Entypo name="triangle-right" color="orange" size="20" />
+            <Text>
+              {paidOut.company}: ${paidOut.amount}
+            </Text>
+          </View>
         </View>
       );
     });
@@ -58,14 +56,18 @@ export class Shifts extends Component {
   emptyView() {
     return (
       <View>
-        <Text style={{textAlign: 'center', fontSize: 12, fontStyle: 'italic'}}>No Paid Outs</Text>
+        <Text
+          style={{ textAlign: "center", fontSize: 12, fontStyle: "italic" }}
+        >
+          No Paid Outs
+        </Text>
       </View>
     );
   }
 
   render() {
     return (
-      <View style={{marginBottom: 25}}>
+      <View style={{ marginBottom: 25 }}>
         <View>
           <Text
             style={{
@@ -74,9 +76,9 @@ export class Shifts extends Component {
               marginLeft: "auto",
               marginRight: "auto",
               marginBottom: 15,
-              textAlign: 'center',
-              width: '100%',
-              backgroundColor: 'white'
+              textAlign: "center",
+              width: "100%",
+              backgroundColor: "white"
             }}
           >
             Paid Outs

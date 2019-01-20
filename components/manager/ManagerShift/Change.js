@@ -48,7 +48,7 @@ export default class Change extends Component {
       "Twenties"
     ];
     return (
-      <View style={{marginBottom: 25}}>
+      <View style={{ marginBottom: 25 }}>
         <View>
           <Text
             style={{
@@ -57,30 +57,64 @@ export default class Change extends Component {
               marginLeft: "auto",
               marginRight: "auto",
               marginBottom: 15,
-              textAlign: 'center',
-              width: '100%',
-              backgroundColor: 'white'
+              textAlign: "center",
+              width: "100%",
+              backgroundColor: "white"
             }}
           >
             Change
           </Text>
         </View>
-        <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-evenly', marginBottom: 5, borderTopWidth: 2, borderBottomWidth: 2, borderColor: 'black'}}>
-          <Text style={{flexBasis: 50, textAlign: 'center'}}>Start</Text>
-          <Text style={{flexBasis: 100, textAlign: 'center'}}>Change Type</Text>
-          <Text style={{flexBasis: 50, textAlign: 'center'}}>End</Text>
-          <Text style={{flexBasis: 50, textAlign: 'center'}}>Used</Text>
+        <View
+          style={{
+            flex: 1,
+            flexDirection: "row",
+            justifyContent: "space-evenly",
+            marginBottom: 5,
+            borderTopWidth: 2,
+            borderBottomWidth: 2,
+            borderColor: "black"
+          }}
+        >
+          <Text style={{ flexBasis: 50, textAlign: "center" }}>Start</Text>
+          <Text style={{ flexBasis: 100, textAlign: "center" }}>
+            Change Type
+          </Text>
+          <Text style={{ flexBasis: 50, textAlign: "center" }}>End</Text>
+          <Text style={{ flexBasis: 50, textAlign: "center" }}>Used</Text>
         </View>
         <View>
           {changeTypes.map(changeType => {
-            const start_amount = this.state.change[`start_${changeType.toLowerCase()}`]
-            const end_amount = this.state.change[`end_${changeType.toLowerCase()}`]
+            const start_amount = this.state.change[
+              `start_${changeType.toLowerCase()}`
+            ];
+            const end_amount = this.state.change[
+              `end_${changeType.toLowerCase()}`
+            ];
             return (
-              <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-evenly', marginBottom: 5, marginTop: 5, borderBottomColor: 'grey', borderBottomWidth: 1}}>
-                <Text style={{flexBasis: 50, textAlign: 'center'}}>{start_amount}</Text>
-                <Text style={{flexBasis: 100, textAlign: 'center'}}>{changeType}</Text>
-                <Text style={{flexBasis: 50, textAlign: 'center'}}>{end_amount}</Text>
-                <Text style={{flexBasis: 50, textAlign: 'center'}}>{start_amount - end_amount }</Text>
+              <View
+                style={{
+                  flex: 1,
+                  flexDirection: "row",
+                  justifyContent: "space-evenly",
+                  marginBottom: 5,
+                  marginTop: 5,
+                  borderBottomColor: "grey",
+                  borderBottomWidth: 1
+                }}
+              >
+                <Text style={{ flexBasis: 50, textAlign: "center" }}>
+                  {start_amount}
+                </Text>
+                <Text style={{ flexBasis: 100, textAlign: "center" }}>
+                  {changeType}
+                </Text>
+                <Text style={{ flexBasis: 50, textAlign: "center" }}>
+                  {end_amount}
+                </Text>
+                <Text style={{ flexBasis: 50, textAlign: "center" }}>
+                  {start_amount - end_amount}
+                </Text>
               </View>
             );
           })}
