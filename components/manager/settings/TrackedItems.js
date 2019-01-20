@@ -58,7 +58,14 @@ export class TrackedItems extends Component {
         }}
       >
         <TextInput
-          style={{ flex: 7, marginRight: 5, borderRadius: 999, paddingLeft: 10, borderColor: 'grey', borderWidth: 1 }}
+          style={{
+            flex: 7,
+            marginRight: 5,
+            borderRadius: 999,
+            paddingLeft: 10,
+            borderColor: "grey",
+            borderWidth: 1
+          }}
           onChangeText={itemName => this.setState({ itemName })}
           value={this.state.itemName}
           placeholder="Item Name"

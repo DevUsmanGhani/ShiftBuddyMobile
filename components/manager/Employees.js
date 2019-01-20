@@ -118,7 +118,12 @@ export class Employees extends Component {
             paddingBottom: 10
           }}
         >
-          <Text style={{ marginLeft: 10 }}>{employee.name} <Text style={{fontSize: 12, fontStyle: 'italic'}}>({employee.username})</Text></Text>
+          <Text style={{ marginLeft: 10 }}>
+            {employee.name}{" "}
+            <Text style={{ fontSize: 12, fontStyle: "italic" }}>
+              ({employee.username})
+            </Text>
+          </Text>
           <Button
             danger
             small

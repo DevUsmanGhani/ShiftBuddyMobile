@@ -28,9 +28,7 @@ export default class Notes extends Component {
 
   componentDidMount() {
     axios
-      .get(
-        `http://localhost:8000/api/v1/shifts/${this.props.shiftId}/notes`
-      )
+      .get(`http://localhost:8000/api/v1/shifts/${this.props.shiftId}/notes`)
       .then(res => {
         this.setState({ notes: res.data });
       })
@@ -40,10 +38,21 @@ export default class Notes extends Component {
   notesView() {
     return this.state.notes.map(note => {
       return (
-        <View style={{flex: 1, flexDirection: 'row', marginBottom: 10, marginLeft: 10}}>
-          <Entypo name="triangle-right" color="orange" size="20"/>
-          <Text style={{fontWeight: 'bold'}}>{note.title ? note.title + ': ' : ''}</Text>
-          <Text style={{flexWrap:'wrap', flex:1, flexGrow: '100'}}>{note.message}</Text>
+        <View
+          style={{
+            flex: 1,
+            flexDirection: "row",
+            marginBottom: 10,
+            marginLeft: 10
+          }}
+        >
+          <Entypo name="triangle-right" color="orange" size="20" />
+          <Text style={{ fontWeight: "bold" }}>
+            {note.title ? note.title + ": " : ""}
+          </Text>
+          <Text style={{ flexWrap: "wrap", flex: 1, flexGrow: "100" }}>
+            {note.message}
+          </Text>
         </View>
       );
     });
@@ -52,14 +61,18 @@ export default class Notes extends Component {
   emptyView() {
     return (
       <View>
-        <Text style={{textAlign: 'center', fontSize: 12, fontStyle: 'italic'}}>No Notes</Text>
+        <Text
+          style={{ textAlign: "center", fontSize: 12, fontStyle: "italic" }}
+        >
+          No Notes
+        </Text>
       </View>
     );
   }
 
   render() {
     return (
-      <View style={{marginBottom: 25}}>
+      <View style={{ marginBottom: 25 }}>
         <View>
           <Text
             style={{
@@ -67,18 +80,16 @@ export default class Notes extends Component {
               fontSize: "24",
               marginLeft: "auto",
               marginRight: "auto",
-              textAlign: 'center',
-              width: '100%',
-              backgroundColor: 'white',
+              textAlign: "center",
+              width: "100%",
+              backgroundColor: "white",
               marginBottom: 15
             }}
           >
             Notes
           </Text>
         </View>
-        {this.state.notes.length == 0
-          ? this.emptyView()
-          : this.notesView()}
+        {this.state.notes.length == 0 ? this.emptyView() : this.notesView()}
       </View>
     );
   }
